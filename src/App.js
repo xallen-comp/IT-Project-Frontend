@@ -10,18 +10,20 @@ function App() {
         axios.get("/contacts").then(res => {setItems(res.data);})
   }
   useEffect(() => {
-  GetContacts();
+    GetContacts();
   }, [])
   return (
+  <header className = "App-header">
   <div>
    {items.map((item, key) => (
             <div>
             <p>{item.first_name} </p>
-            <b>{item.last_name}</b>
+            <p>{item.last_name}</p>
             <b>{item.comments}</b>
             </div>
    ))}
    </div>
+   </header>
    )
 }
 
