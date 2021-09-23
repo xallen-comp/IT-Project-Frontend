@@ -46,8 +46,8 @@ const EventPage = () => {
         console.log(e)
         e.preventDefault();
         if (true) {
-            axios.post("events/add", 
-                {type: type, description: description, start:start, end:end}).then(res => console.log(res))
+            axios.post("/events/add", 
+                {description: description, title: type, start_time:start, end_time:end}).then(res => console.log(res));
         }
     }
 
@@ -60,7 +60,7 @@ const EventPage = () => {
             <input
             type="text"
             className="input"
-            placeHolder="Enter Type"
+            placeholder="Enter Type"
             name="type"
             onChange={onChangeType}
             autoComplete="on"
@@ -69,7 +69,7 @@ const EventPage = () => {
             <input
             type="text"
             className="input"
-            placeHolder="Enter Description"
+            placeholder="Enter Description"
             name="Description"
             onChange={onChangeDescription}
             autoComplete="on"
@@ -78,7 +78,7 @@ const EventPage = () => {
             <input
             type="text"
             className="input"
-            placeHolder="Enter Start"
+            placeholder="Enter Start"
             name="Start"
             onChange={onChangeStart}
             autoComplete="on"
@@ -87,7 +87,7 @@ const EventPage = () => {
             <input
             type="text"
             className="input"
-            placeHolder="Enter End"
+            placeholder="Enter End"
             name="End"
             onChange={onChangeEnd}
             autoComplete="on"

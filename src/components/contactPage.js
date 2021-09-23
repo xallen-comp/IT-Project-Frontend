@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 
 import axios from "../services/backendApi.js";
-
 const ContactPage = () => {
     const [items, setItems] = useState([]);
     const [firstName, setFirstName] = useState("");
@@ -17,7 +16,23 @@ const ContactPage = () => {
     const onChangeEmail = (e) => {
         const email = e.target.value;
         setEmail(email);
-        checkEmailFormat(email)
+        checkEmailFormat(email);
+    };
+    const onChangeFirstName = (e) => {
+        const firstName = e.target.value;
+        setFirstName(firstName);
+    };
+    const onChangeLastName = (e) => {
+        const lastName = e.target.value;
+        setLastName(lastName);
+    };
+    const onChangeComment = (e) => {
+        const comment = e.target.value;
+        setLastName(comment);
+    };
+    const onChangePhone = (e) => {
+        const phone = e.target.value;
+        setLastName(phone);
     };
     const GetEvents = () =>{
         axios.get("/events").then(res => {setEvents(res.data);})
@@ -31,12 +46,11 @@ const ContactPage = () => {
         return emailCheck
     }
     const handleUpdate = (e) => {
-        console.log(e)
+        console.log(firstName);
+        console.log(lastName);
         e.preventDefault();
          if (true){
-            console.log(validateUpdate);
-         axios.post("contacts/add", 
-              {email: email, firstName: firstName, lastName: lastName, comments: comment}).then(res=> console.log(res))
+             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, comments: comment, phone: phone}).then(res => console.log(res));
          }
     }
     //from webinfo 2021
@@ -59,7 +73,7 @@ const ContactPage = () => {
                 className="input"
                 placeholder="Enter FirstName" 
                 name="firstName" 
-                onChange={onChangeEmail}
+                onChange={onChangeFirstName}
                 autoComplete="on"
                 required/><br />
                 <label htmlFor="lastName">Last Name: </label>
@@ -68,7 +82,7 @@ const ContactPage = () => {
                 className="input"
                 placeholder="Enter LastName" 
                 name="lastName" 
-                onChange={onChangeEmail}
+                onChange={onChangeLastName}
                 autoComplete="on"
                 required/><br />
                 <label htmlFor="email">Email: </label>
@@ -86,7 +100,7 @@ const ContactPage = () => {
                 className="input"
                 placeholder="Enter Phone" 
                 name="phone" 
-                onChange={onChangeEmail}
+                onChange={onChangePhone}
                 autoComplete="on"
                 required/><br />
                 <label htmlFor="comments">Comments: </label>
@@ -95,7 +109,7 @@ const ContactPage = () => {
                 className="input"
                 placeholder="Enter Comment" 
                 name="comment" 
-                onChange={onChangeEmail}
+                onChange={onChangeComment}
                 autoComplete="on"
                 required/><br />
                 <input
