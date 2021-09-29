@@ -24,6 +24,35 @@
   color: black;
 }
 
+.main{
+  width: 20vh;
+  height: 20vh;
+}
+
+img{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+
+}
+
+.horizon {
+  width: 100vw;
+  height: 20vh;
+}
+
+.bg {
+  width: 10vw;
+  height: 20vh;
+  text-align: center;
+}
+
+.bg1 {
+  font-size: 30px;
+  text-align: center;
+}
+
 .App-events{
     color: black;
 }
