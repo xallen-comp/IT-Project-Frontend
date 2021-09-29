@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import axios from "../services/backendApi.js";
 import HorizontalScroll from "react-scroll-horizontal";
 import '../App.css';
@@ -25,11 +25,12 @@ const HomePage = () => {
                     <div className = "main bg">
                         <Link to='/addContact' className='btn'>Add Contact</Link>
                     </div>
-
                         {items.map((item, key) => (
                         <div className = "main bg1">
-                        <img src = {item.photo}/>
-                        <p>{item.first_name} {item.last_name} </p>
+                        <Link to={`/contactDetails/${item._id}`}>
+                            <img src = {item.photo}/>
+                            <p>{item.first_name} {item.last_name} </p>
+                        </Link>
                         </div>
                         ))}
                 </HorizontalScroll>
@@ -37,14 +38,6 @@ const HomePage = () => {
 
             
         <div>             
-            {/*<Link to='/addContact' className='btn'>Add Contact</Link>
-            {items.map((item, key) => (
-                <div>
-                <p>{item.first_name} </p>
-                <p>{item.last_name}</p>
-                <b>{item.comments}</b>
-                </div>
-            ))} */}
             <h1> Events </h1>
             {events.map((event, key) => (
                 <div>
