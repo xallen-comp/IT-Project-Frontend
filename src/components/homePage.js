@@ -28,7 +28,7 @@ const HomePage = () => {
                         {items.map((item, key) => (
                         <div className = "main bg1">
                         <Link to={`/contactDetails/${item._id}`}>
-                            <img src = {item.photo}/>
+                            <img src = {item.photo} alt="Contact photos"/>
                             <p>{item.first_name} {item.last_name} </p>
                         </Link>
                         </div>
@@ -40,12 +40,12 @@ const HomePage = () => {
         <div>             
             <h1> Events </h1>
             {events.map((event, key) => (
-                <div>
-                    <p>{event.description} </p>
-                    <p>{event.start}</p>
-                    <b>{event.end}</b>
-                    <b>{event.importance}</b>
-                </div>
+                <Link to={`/eventDetails/${event._id}`}>
+                    <div>
+                        <p>{event.title} </p>
+                        <p>{event.start} {event.end}</p>
+                    </div>
+                </Link>
             ))}
             <Link to='/addEvent' className='btn'>Add Event</Link>
         

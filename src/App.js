@@ -8,6 +8,7 @@ import HomePage from './components/homePage';
 import EventPage from './components/eventPage';
 import ContactPage from './components/contactPage';
 import ContactDetails from './components/contactDetails';
+import EventDetails from './components/eventDetails';
 
 class App extends Component {
 	render() {
@@ -18,8 +19,11 @@ class App extends Component {
 				<Route exact path="/addEvent" component = {EventPage} />
 				<Route exact path="/addContact" component = {ContactPage} />
 				<Route exact path ="/contactDetails/:contactID" render = {(props) => (
-                <ContactDetails {...props}/>
-            )}/>
+					<ContactDetails {...props}/>
+				)}/>
+				<Route exact path ="/eventDetails/:eventID" render = {(props) => (
+					<EventDetails {...props}/>
+				)}/>
 			</Switch>
 		</Router>
 		
