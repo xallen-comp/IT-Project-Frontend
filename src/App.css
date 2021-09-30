@@ -30,11 +30,10 @@
 }
 
 img{
-  width: 100px;
-  height: 100px;
+  width: calc(30px + 10vmin);
+  height: calc(30px + 10vmin);
   object-fit: cover;
   border-radius: 50%;
-
 }
 
 .horizon {
@@ -49,7 +48,9 @@ img{
 }
 
 .bg1 {
-  font-size: 30px;
+  width: calc(10vw + 10vmin);
+  height: 20%;
+  font-size: calc(10px + 2vmin);
   text-align: center;
 }
 
