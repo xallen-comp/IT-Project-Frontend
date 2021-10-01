@@ -1,8 +1,6 @@
 //import logo from './logo.svg';
 import React, { Component } from 'react';
-import { useState, useEffect } from "react";
 import './App.css';
-import axios from "../src/services/backendApi.js";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from './components/homePage';
 import EventPage from './components/eventPage';
