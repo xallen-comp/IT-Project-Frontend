@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import axios from "../services/backendApi.js";
-import PropTypes from 'prop-types';
 
 
 const ContactDetails = (props) => {
@@ -17,7 +16,7 @@ const ContactDetails = (props) => {
 			<p>{item.first_name} {item.last_name} </p>
 			<p>{item.comments}</p>
 			<p>{item.email}</p>
-<b>{item.phone}</b>
+			<b>{item.phone}</b>
 		</div>
 	);
 }
