@@ -17,15 +17,14 @@ const HomePage = () => {
     }
     const GetEvents = () =>{
         axios.get("/events").then(res => {
-        let calendarEvents = [];
+        let cEvents = [];
         setEvents(res.data);
-        for (let index in events){
-            let obj = {title: events[index].title, start: events[index].start_time, end: events[index].end_time, url: `/eventDetails/${events[index]._id}`, backgroundColor: events[index].colour}
-            calendarEvents.push(obj);
+        for (let index in res.data){
+            let obj = {title: res.data[index].title, start: res.data[index].start_time, end: res.data[index].end_time, url: `/eventDetails/${res.data[index]._id}`, backgroundColor: res.data[index].colour}
+            cEvents.push(obj);
         }
-        console.log(calendarEvents);
-        setCalendarEvents(calendarEvents);
-        })
+        setCalendarEvents(cEvents);
+        });
     }
     useEffect(() => {
         GetContacts();
