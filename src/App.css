@@ -62,9 +62,19 @@ img{
     color: black;
 }
 
+.header-title{
+  position:absolute;
+  top: 0px;
+  left: 400px
+}
+
 .App-link {
   color: #61dafb;
 }
+a:Link { text-decoration: none; color: inherit}
+a:visited {text-decoration: none; color: inherit}
+a:active {text-decoration: none; color: inherit}
+a:hover {text-decoration: none; color: inherit}
 
 .btn {
   display: flex;

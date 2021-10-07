@@ -39,7 +39,10 @@ const EventPage = () => {
     }
 
     return (
-    <header className = "App-header">
+    <body className = "App-header">
+        <header className = "header-title">
+            <h1> <a href="/">Event Tracker</a> </h1>
+        </header>
         <div>
             <form className = 'form' onSubmit = {handleUpdate}>
                 <p>Enter the event's details blow</p>
@@ -74,7 +77,10 @@ const EventPage = () => {
                     /> 
             </form>
         </div>
-   </header>
+        <footer>
+            <p>Turing Machines&#8482;</p>
+        </footer>
+   </body>
    );
 }
 

@@ -32,7 +32,10 @@ const HomePage = () => {
     }, [])
     return (
         
-    <header className = "App-header">
+    <body className = "App-header">
+        <header>
+            <h1> <a href="/">Event Tracker</a> </h1>
+        </header>
             <div className= "horizon">
                 <HorizontalScroll>
                     <div className = "main bg">
@@ -42,7 +45,7 @@ const HomePage = () => {
                         <div className = "main bg1">
                         <Link to={`/contactDetails/${item._id}`}>
                             <img src = {item.photo} alt="Contact photos"/>
-                            <p>{item.first_name} {item.last_name} </p>
+                            <p className = "contact-link">{item.first_name} {item.last_name} </p>
                         </Link>
                         </div>
                         ))}
@@ -66,7 +69,10 @@ const HomePage = () => {
             <Link to='/addEvent' className='btn'>Add Event</Link>
         
         </div>
-   </header>
+        <footer>
+            <p>Turing Machines&#8482;</p>
+        </footer>
+   </body>
             );
 }
 

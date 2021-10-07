@@ -11,13 +11,21 @@ const ContactDetails = (props) => {
 		axios.get(url).then(res => {setItem(res.data)})
     }, [props.match.params.contactID, url])
 	return (
-		<div>
-			<img src = {item.photo} alt= {item.first_name + " " + item.last_name}/>
-			<p>{item.first_name} {item.last_name} </p>
-			<p>{item.comments}</p>
-			<p>{item.email}</p>
-			<b>{item.phone}</b>
-		</div>
+		<body className = "App-header">
+			<header>
+            	<h1 className = "header-title"> <a href="/">Event Tracker</a> </h1>
+			</header>
+			<div>
+				<img src = {item.photo} alt= {item.first_name + " " + item.last_name}/>
+				<p>{item.first_name} {item.last_name} </p>
+				<p>{item.comments}</p>
+				<p>{item.email}</p>
+				<b>{item.phone}</b>
+			</div>
+			<footer>
+				<p>Turing Machines&#8482;</p>
+			</footer>
+		</body>
 	);
 }
 export default ContactDetails;
