@@ -3,6 +3,7 @@ import React from "react";
 import axios from "../services/backendApi.js";
 import Datetime from 'react-datetime';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 const EventDetails = (props) => {
 	const [event, setEvent] = useState("");
@@ -18,6 +19,7 @@ const EventDetails = (props) => {
                 <p>{event.importance}</p>
                 <p>Reminder set for {event.reminder}</p> &nbsp;
                 <p>{event.description}</p>
+                <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
             </div>
 	);
 }
