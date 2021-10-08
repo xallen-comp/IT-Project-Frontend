@@ -39,6 +39,8 @@ img{
 .horizon {
   width: 100vw;
   height: 20vh;
+  position: relative;
+  left: 50px;
 }
 
 .bg {
@@ -71,6 +73,7 @@ img{
 .App-link {
   color: #61dafb;
 }
+
 a:Link { text-decoration: none; color: inherit}
 a:visited {text-decoration: none; color: inherit}
 a:active {text-decoration: none; color: inherit}
@@ -81,8 +84,8 @@ a:hover {text-decoration: none; color: inherit}
   align-items: center;
   flex-direction: column;
   color: #F0F8FF;
-  background: #00008B;
-  border: 2px solid #00008B;
+  background: #4c72b0; /* old colour: #00008B*/
+  border: 2px solid #4c72b0;
   padding: 10px 20px;
   margin: 5px;
   border-radius: 5px;
@@ -91,6 +94,14 @@ a:hover {text-decoration: none; color: inherit}
   font-size: 20px;
   font-family: inherit;
 }
+
+.contact {
+  border-radius: 50%;
+  height: 110px;
+  width: 110px;
+  padding: 10px 10px;
+}
+
 
 @keyframes App-logo-spin {
   from {

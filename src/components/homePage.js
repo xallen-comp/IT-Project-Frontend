@@ -39,7 +39,7 @@ const HomePage = () => {
             <div className= "horizon">
                 <HorizontalScroll>
                     <div className = "main bg">
-                        <Link to='/addContact' className='btn'>Add Contact</Link>
+                        <Link to='/addContact' className='btn contact'>Add Contact</Link>
                     </div>
                         {items.map((item, key) => (
                         <div className = "main bg1">
@@ -66,7 +66,7 @@ const HomePage = () => {
                     </div>
                 </Link>
             ))}
-            <Link to='/addEvent' className='btn'>Add Event</Link>
+            <Link to='/addEvent' className='btn event'>Add Event</Link>
         
         </div>
         <footer>
