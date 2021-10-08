@@ -37,7 +37,7 @@ const EventDetails = (props) => {
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
-        axios.post("/events/add", 
+        axios.post(`/events/${event._id}/update`, 
                 {description: description, title: title, start_time:start, end_time:end}).then(res => console.log(res));
         history.push("/");
     }
@@ -76,8 +76,8 @@ const EventDetails = (props) => {
                         <input
                             type="submit"
                             className="btn"
-                            name="Add Event"
-                            value="Add Event"
+                            name="Update Event"
+                            value="Update Event"
                             autoComplete="on"
                         /> 
                 </form>
