@@ -18,7 +18,12 @@ const ContactDetails = (props) => {
 			<p>{item.comments}</p>
 			<p>{item.email}</p>
 			<b>{item.phone}</b>
+
+			<Link to={`/contactComments/${item.contactID}`} className='btn'>Comments</Link>
+			
+
 			<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
+
 		</div>
 	);
 }
