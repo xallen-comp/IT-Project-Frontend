@@ -10,6 +10,8 @@ import EventDetails from './components/eventDetails';
 import UpdateContact from './components/updateContact';
 import UpdateEvent from './components/updateEvent';
 
+import FileBase64 from 'react-file-base64';
+import axios from 'axios';
 
 class App extends Component {
 	render() {
@@ -36,7 +38,7 @@ class App extends Component {
 		</Router>
 		
 		);
-	}
+}
 }
 
 export default App;

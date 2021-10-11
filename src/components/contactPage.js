@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from "../services/backendApi.js";
+import FileBase64 from 'react-file-base64';
 const ContactPage = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [comment, setComment] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
+    const [image, setImage] = useState({photo: ''});
+   // const [photo, setPhoto] = useState("");
     const [emailCheck, setEmailCheck] = useState(false);
     const history = useHistory();
     const onChangeEmail = (e) => {
@@ -30,6 +33,11 @@ const ContactPage = () => {
         const phone = e.target.value;
         setPhone(phone);
     };
+    /*const onDonePhoto = (e) => {
+        console.log(e.image);
+        const photo = base64;
+        setPhoto(photo);
+    };*/
 
     const validateUpdate = () => {
         return emailCheck;
@@ -39,7 +47,7 @@ const ContactPage = () => {
         console.log(lastName);
         e.preventDefault();
          if (true){
-             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, comments: comment, phone: phone}).then(res => console.log(res));
+             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, comments: comment, phone: phone, image}).then(res => console.log(res));
              history.push("/");
          }
     }
@@ -52,9 +60,15 @@ const ContactPage = () => {
         setEmailCheck(validateEmail(emailToCheck))
     
     }
+
+
     return (
-    <header className = "App-header">
+    <body className = "App-header">
         <div>
+
+
+
+       
             <form className='form' onSubmit={handleUpdate}>
                 <p>Enter the contact's details below</p>
                 <label htmlFor="firstName">First Name: </label>
@@ -108,10 +122,21 @@ const ContactPage = () => {
                         name="Add Contact"
                         value="Add Contact"
                         autoComplete="on"/> 
+                    <FileBase64 
+                    type= "file" 
+                    multiple={false} 
+                    onDone={({ base64 }) => setImage({ ...image, photo: base64})} />
             </form>
         </div>
-   </header>
+
+
+
+        <footer>
+            <p>Turing Machines&#8482;</p>
+        </footer>
+   </body>
    );
+    
 }
 
 export default ContactPage;
