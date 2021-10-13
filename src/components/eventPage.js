@@ -1,25 +1,18 @@
 import { useState, useEffect } from "react";
-
+import { useHistory } from 'react-router-dom';
 import axios from "../services/backendApi.js";
+import Datetime from 'react-datetime';
 
 const EventPage = () => {
-    const [items, setItems] = useState([]);
-    const [events, setEvents] = useState([]);
-    const [type, setType] = useState("");
+    const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
+    const history = useHistory();
 
-    const GetContacts = () =>{
-        axios.get("/contacts").then(res => {setItems(res.data);})
-    }
-    const GetEvents = () =>{
-        axios.get("/events").then(res => {setEvents(res.data);})
-    }
-
-    const onChangeType = (e) => {
-        const type = e.target.value;
-        setType(type);
+    const onChangeTitle = (e) => {
+        const title = e.target.value;
+        setTitle(title);
     };
 
     const onChangeDescription = (e) => {
@@ -28,77 +21,57 @@ const EventPage = () => {
     };
 
     const onChangeStart = (e) => {
-        const start = e.target.value;
+        const start = e._d;
         setStart(start);
     }
 
     const onChangeEnd = (e) => {
-        const end = e.target.value;
+        const end = e._d;
         setEnd(end);
     }
-
-    useEffect(() => {
-        GetContacts();
-        GetEvents();
-    }, [])
 
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
-        if (true) {
-            axios.post("/events/add", 
-                {description: description, title: type, start_time:start, end_time:end}).then(res => console.log(res));
-        }
+        axios.post("/events/add", 
+                {description: description, title: title, start_time:start, end_time:end}).then(res => console.log(res));
+        history.push("/");
     }
 
     return (
     <header className = "App-header">
         <div>
             <form className = 'form' onSubmit = {handleUpdate}>
-            <p>Enter the event's details blow</p>
-            <label htmlFor="Type">Type:</label>
-            <input
-            type="text"
-            className="input"
-            placeholder="Enter Type"
-            name="type"
-            onChange={onChangeType}
-            autoComplete="on"
-            required/><br />
-            <label htmlFor="Description">Description:</label>
-            <input
-            type="text"
-            className="input"
-            placeholder="Enter Description"
-            name="Description"
-            onChange={onChangeDescription}
-            autoComplete="on"
-            required/><br />
-            <label htmlFor="Start">Start:</label>
-            <input
-            type="text"
-            className="input"
-            placeholder="Enter Start"
-            name="Start"
-            onChange={onChangeStart}
-            autoComplete="on"
-            required/><br />
-            <label htmlFor="End">End:</label>
-            <input
-            type="text"
-            className="input"
-            placeholder="Enter End"
-            name="End"
-            onChange={onChangeEnd}
-            autoComplete="on"
-            required/><br />
-            <input
-            type="submit"
-            className="btn"
-            name="Add Event"
-            value="Add Event"
-            autoComplete="on"
-            /> 
+                <p>Enter the event's details blow</p>
+                <label htmlFor="Title">Title:</label>
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="Enter Title:"
+                        name="title"
+                        onChange={onChangeTitle}
+                        autoComplete="on"
+                        required/><br />
+                <label htmlFor="Description">Description:</label>
+                    <input
+                        type="text"
+                        className="input"
+                        placeholder="Enter Description"
+                        name="Description"
+                        onChange={onChangeDescription}
+                        autoComplete="on"
+                        required/><br />
+                <label htmlFor="Start">Start:</label>
+                    <Datetime onChange={onChangeStart}/>
+                <label htmlFor="End">End:</label>
+                    <Datetime onChange={onChangeEnd}/>
+                    <input
+                        type="submit"
+                        className="btn"
+                        name="Add Event"
+                        value="Add Event"
+                        autoComplete="on"
+                    /> 
             </form>
         </div>
    </header>

@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import axios from "../services/backendApi.js";
-//import PropTypes from 'prop-types';
+import Datetime from 'react-datetime';
 import '../App.css';
+import { Link } from 'react-router-dom';
 
 const EventDetails = (props) => {
 	const [event, setEvent] = useState("");
@@ -14,11 +15,11 @@ const EventDetails = (props) => {
 	return (
             <div>
                 <h1>{event.title}</h1>
-                <p>{event.start} {event.end} </p>
+                <p> {event.start_time + " to " + event.end_time} </p>
                 <p>{event.importance}</p>
                 <p>Reminder set for {event.reminder}</p> &nbsp;
                 <p>{event.description}</p>
-                <p>{event.phone}</p>
+                <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
             </div>
 	);
 }
