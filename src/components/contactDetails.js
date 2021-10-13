@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import React from "react";
 import axios from "../services/backendApi.js";
-import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 
 const ContactDetails = (props) => {
@@ -17,7 +17,8 @@ const ContactDetails = (props) => {
 			<p>{item.first_name} {item.last_name} </p>
 			<p>{item.comments}</p>
 			<p>{item.email}</p>
-<b>{item.phone}</b>
+			<b>{item.phone}</b>
+			<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
 		</div>
 	);
 }
