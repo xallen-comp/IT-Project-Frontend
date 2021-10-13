@@ -46,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "cypress": "^8.5.0"
+    "cypress": "^8.5.0",
+    "start-server-and-test": "^1.14.0"
   }
 }
