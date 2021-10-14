@@ -64,10 +64,62 @@ img{
     color: black;
 }
 
-.header-title{
-  position:absolute;
-  top: 0px;
-  left: 400px
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "poppins", sans-serif;
+  box-sizing: border-box;
+
+}
+
+nav{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0f1936;
+}
+.logo{
+  color: whitesmoke;
+  padding: 5px 10px;
+  width: 350px;
+  font-size: 40px;
+
+}
+.nav-links{
+  padding: 28px 0;
+}
+.nav-links li{
+  display: inline-block;
+  margin: 0 15px;
+}
+.nav-links li a{
+  text-decoration: none;
+  color: whitesmoke;
+  padding: 5px 0;
+}
+
+
+
+
+
+
+
+
+/*.header-title{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 500px
+}*/
+.header-title.h1 {
+  height: 100px;
+  width: 460px; /** Use 100% to fill the width of the page **/
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: rgba(0,0,255,0.2);
 }
 
 .App-link {

@@ -53,70 +53,77 @@ const ContactPage = () => {
     
     }
     return (
-    <body className = "App-header">
-        <header className = "header-title">
-            <h1> <a href="/">Event Tracker</a> </h1>
-        </header>
-        <div>
-            <form className='form' onSubmit={handleUpdate}>
-                <p>Enter the contact's details below</p>
-                <label htmlFor="firstName">First Name: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter FirstName" 
-                        name="firstName" 
-                        onChange={onChangeFirstName}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="lastName">Last Name: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter LastName" 
-                        name="lastName" 
-                        onChange={onChangeLastName}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="email">Email: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter Email" 
-                        name="email" 
-                        onChange={onChangeEmail}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="phone">Phone: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter Phone" 
-                        name="phone" 
-                        onChange={onChangePhone}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="comments">Comments: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter Comment" 
-                        name="comment" 
-                        onChange={onChangeComment}
-                        autoComplete="on"
-                        required/><br />
-                    <input
-                        type="submit"
-                        className="btn"
-                        name="Add Contact"
-                        value="Add Contact"
-                        autoComplete="on"/> 
-            </form>
-        </div>
-        <footer>
-            <p>Turing Machines&#8482;</p>
-        </footer>
-   </body>
+            <><div class="header">
+                <nav>
+                    <h1 className = "logo"><a href="/">Event Tracker</a></h1>
+                    <ul class="nav-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/">Contacts</a></li>
+                        <li><a href="/">Events</a></li>
+                    </ul>
+                </nav>
+            </div>
+        <body className = "App-header">
+            <div>
+                <form className='form' onSubmit={handleUpdate}>
+                    <p>Enter the contact's details below</p>
+                    <label htmlFor="firstName">First Name: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter FirstName" 
+                            name="firstName" 
+                            onChange={onChangeFirstName}
+                            autoComplete="on"
+                            required/><br />
+                    <label htmlFor="lastName">Last Name: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter LastName" 
+                            name="lastName" 
+                            onChange={onChangeLastName}
+                            autoComplete="on"
+                            required/><br />
+                    <label htmlFor="email">Email: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter Email" 
+                            name="email" 
+                            onChange={onChangeEmail}
+                            autoComplete="on"
+                            required/><br />
+                    <label htmlFor="phone">Phone: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter Phone" 
+                            name="phone" 
+                            onChange={onChangePhone}
+                            autoComplete="on"
+                            required/><br />
+                    <label htmlFor="comments">Comments: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter Comment" 
+                            name="comment" 
+                            onChange={onChangeComment}
+                            autoComplete="on"
+                            required/><br />
+                        <input
+                            type="submit"
+                            className="btn"
+                            name="Add Contact"
+                            value="Add Contact"
+                            autoComplete="on"/> 
+                </form>
+            </div>
+            <footer>
+                <p>Turing Machines&#8482;</p>
+            </footer>
+    </body></>
    );
 }
 

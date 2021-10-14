@@ -39,48 +39,55 @@ const EventPage = () => {
     }
 
     return (
-    <body className = "App-header">
-        <header className = "header-title">
-            <h1> <a href="/">Event Tracker</a> </h1>
-        </header>
-        <div>
-            <form className = 'form' onSubmit = {handleUpdate}>
-                <p>Enter the event's details blow</p>
-                <label htmlFor="Title">Title:</label>
-                    <input
-                        type="text"
-                        className="input"
-                        placeholder="Enter Title:"
-                        name="title"
-                        onChange={onChangeTitle}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="Description">Description:</label>
-                    <input
-                        type="text"
-                        className="input"
-                        placeholder="Enter Description"
-                        name="Description"
-                        onChange={onChangeDescription}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="Start">Start:</label>
-                    <Datetime onChange={onChangeStart}/>
-                <label htmlFor="End">End:</label>
-                    <Datetime onChange={onChangeEnd}/>
-                    <input
-                        type="submit"
-                        className="btn"
-                        name="Add Event"
-                        value="Add Event"
-                        autoComplete="on"
-                    /> 
-            </form>
-        </div>
-        <footer>
-            <p>Turing Machines&#8482;</p>
-        </footer>
-   </body>
+        <><div class="header">
+                <nav>
+                    <h1 className = "logo"><a href="/">Event Tracker</a></h1>
+                    <ul class="nav-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/">Contacts</a></li>
+                        <li><a href="/">Events</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <body className = "App-header">
+                <div>
+                    <form className = 'form' onSubmit = {handleUpdate}>
+                        <p>Enter the event's details blow</p>
+                        <label htmlFor="Title">Title:</label>
+                            <input
+                                type="text"
+                                className="input"
+                                placeholder="Enter Title:"
+                                name="title"
+                                onChange={onChangeTitle}
+                                autoComplete="on"
+                                required/><br />
+                        <label htmlFor="Description">Description:</label>
+                            <input
+                                type="text"
+                                className="input"
+                                placeholder="Enter Description"
+                                name="Description"
+                                onChange={onChangeDescription}
+                                autoComplete="on"
+                                required/><br />
+                        <label htmlFor="Start">Start:</label>
+                            <Datetime onChange={onChangeStart}/>
+                        <label htmlFor="End">End:</label>
+                            <Datetime onChange={onChangeEnd}/>
+                            <input
+                                type="submit"
+                                className="btn"
+                                name="Add Event"
+                                value="Add Event"
+                                autoComplete="on"
+                            /> 
+                    </form>
+                </div>
+                <footer>
+                    <p>Turing Machines&#8482;</p>
+                </footer>
+        </body></>
    );
 }
 
