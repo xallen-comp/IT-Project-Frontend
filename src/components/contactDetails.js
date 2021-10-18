@@ -17,9 +17,10 @@ const ContactDetails = (props) => {
 			<p>{item.first_name} {item.last_name} </p>
 			<p>{item.comments}</p>
 			<p>{item.email}</p>
+			<p>test: {item._id}</p>
 			<b>{item.phone}</b>
 
-			<Link to={`/contactComments/${item.contactID}`} className='btn'>Comments</Link>
+			<Link to={`/contactComments/${item._id}`} className='btn'>Comments</Link>
 			
 
 			<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
