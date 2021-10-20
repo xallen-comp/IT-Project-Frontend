@@ -55,7 +55,6 @@ const ContactDetails = (props) => {
                 {comments.map((note, key) => (
 					<>
 						<p>{note.comment_body}</p>
-						<p>{note._id}</p>
 						<Button size="small" variant="outlined" color="error" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) {axios.delete(`/comments/${note._id}/delete`) }} }>
 									Remove
 						</Button>
