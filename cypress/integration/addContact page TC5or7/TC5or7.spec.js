@@ -10,7 +10,7 @@
 
 
 describe("Test 5 Check if buttons are visible and clickable", function() {
-    it('TS 5.1 Check for correct input prompts (name, phone number, etc)', function() {
+    it('TS 5.1 Check for correct input prompts for add contact botton (name, phone number, etc)', function() {
         cy.visit('http://localhost:3000/addContact')
         cy.contains("Enter the contact's details below").should('be.visible')
         cy.contains('First Name:').should('be.visible')

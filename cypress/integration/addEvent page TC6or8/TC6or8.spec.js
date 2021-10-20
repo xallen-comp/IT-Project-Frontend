@@ -9,8 +9,8 @@
 
 
 
-describe("Test 5 Check if buttons are visible and clickable", function() {
-    it('TS 5.1 Check for correct input prompts (name, phone number, etc)', function() {
+describe("Test 6 Check if buttons are visible and clickable", function() {
+    it('TS 6.1 Check for correct input prompts for add event botton (title,description,start etc)', function() {
         cy.visit('http://localhost:3000/addEvent')
         cy.contains("Enter the event's details below").should('be.visible')
         cy.contains('Title:').should('be.visible')
@@ -20,7 +20,7 @@ describe("Test 5 Check if buttons are visible and clickable", function() {
     
     })
 
-    it('TS 7 check add contact clickable&  visivle', function() {
+    it('TS 8 check add event clickable&  visivle', function() {
         cy.visit('http://localhost:3000/addEvent')
             cy.pause()
             cy.contains('Add Event').should('be.visible')
