@@ -33,7 +33,7 @@ const Comments = (props) => {
 	return (
             <div>
                 <h1>{props.match.params.contactID} {comments.contactID} Comments</h1>
-                <p>{comments.comment_body}</p>
+                <p>{comments[0].comment_body}</p>
             </div>
 	);
 }
