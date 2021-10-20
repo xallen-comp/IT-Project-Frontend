@@ -24,16 +24,20 @@ const EventDetails = (props) => {
                 </nav>
             </div>
         <body className="App-header">
-            
-            <h1>{event.title}</h1>
-            <p> {event.start_time + " to " + event.end_time} </p>
-            <p>{event.importance}</p>
-            <p>Reminder set for {event.reminder}</p> &nbsp;
-            <p>{event.description}</p>
-            <footer>
+            <div className = "event-details">
+                <h1>{event.title}</h1>
+                <div className = "splash-of-colour" style={{height: "20px", width: "100%", background: `${event.colour}`}}></div> 
+
+                    <p> {event.start_time + " to " + event.end_time} </p>
+                    <p>Importance: {event.importance}</p>
+                    <p>Reminder set for: {event.reminder}</p>
+                    <p>{event.description}</p>
+                    <p>{event.colour}</p>
+            </div>
+        </body>
+        <footer>
                 <p>Turing Machines&#8482;</p>
-            </footer>
-        </body></>
+        </footer></>
 	);
 }
 

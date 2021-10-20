@@ -20,7 +20,7 @@ const HomePage = () => {
         let cEvents = [];
         setEvents(res.data);
         for (let index in res.data){
-            let obj = {title: res.data[index].title, start: res.data[index].start_time, end: res.data[index].end_time, url: `/eventDetails/${res.data[index]._id}`, backgroundColor: res.data[index].colour}
+            let obj = {title: res.data[index].title, colour: res.data[index].colour, start: res.data[index].start_time, end: res.data[index].end_time, url: `/eventDetails/${res.data[index]._id}`, backgroundColor: res.data[index].colour}
             cEvents.push(obj);
         }
         setCalendarEvents(cEvents);
@@ -65,6 +65,7 @@ const HomePage = () => {
                     <FullCalendar
                         plugins={[dayGridPlugin]}
                         events={calendarEvents}
+                        //eventContent={renderEventContent}
                     />
                     {events.map((event, key) => (
                         <Link to={`/eventDetails/${event._id}`}>
@@ -76,11 +77,22 @@ const HomePage = () => {
                     <Link to='/addEvent' className='btn event'>Add Event</Link>
                 
                 </div>
-                <footer>
-                    <p>Turing Machines&#8482;</p>
-                </footer>
-        </body></>
-            );
+        </body>
+        <footer>
+            <p>Turing Machines&#8482;</p>
+        </footer></>
+    );
 }
+
+
+function renderEventContent(eventInfo) {
+    return (
+        <>
+        <div className = "idek">
+            <p style={{color: `${eventInfo.event.colour}`}}>{eventInfo.event.title}</p>
+        </div>
+      </>
+    )
+  }
 
 export default HomePage;

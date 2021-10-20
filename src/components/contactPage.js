@@ -6,6 +6,7 @@ const ContactPage = () => {
     const [lastName, setLastName] = useState("");
     const [comment, setComment] = useState("");
     const [email, setEmail] = useState("");
+    const [occupation, setOccupation] = useState("");
     const [phone, setPhone] = useState("");
     const [emailCheck, setEmailCheck] = useState(false);
     const history = useHistory();
@@ -30,6 +31,10 @@ const ContactPage = () => {
         const phone = e.target.value;
         setPhone(phone);
     };
+    const onChangeOccupation = (e) => {
+        const occupation = e.target.value;
+        setOccupation(occupation);
+    };
 
     const validateUpdate = () => {
         return emailCheck;
@@ -39,7 +44,7 @@ const ContactPage = () => {
         console.log(lastName);
         e.preventDefault();
          if (true){
-             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, comments: comment, phone: phone}).then(res => console.log(res));
+             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone}).then(res => console.log(res));
              history.push("/");
          }
     }
@@ -92,8 +97,7 @@ const ContactPage = () => {
                             placeholder="Enter Email" 
                             name="email" 
                             onChange={onChangeEmail}
-                            autoComplete="on"
-                            required/><br />
+                            autoComplete="on"/><br />
                     <label htmlFor="phone">Phone: </label>
                         <input 
                             type="text" 
@@ -102,7 +106,16 @@ const ContactPage = () => {
                             name="phone" 
                             onChange={onChangePhone}
                             autoComplete="on"
-                            required/><br />
+                            /><br />
+                    <label htmlFor="occupation">Occupation: </label>
+                        <input 
+                            type="text"
+                            className="input"
+                            placeholder="Enter Occupation" 
+                            name="occupation" 
+                            onChange={onChangeOccupation}
+                            autoComplete="on"
+                            /><br />
                     <label htmlFor="comments">Comments: </label>
                         <input 
                             type="text" 
@@ -111,7 +124,7 @@ const ContactPage = () => {
                             name="comment" 
                             onChange={onChangeComment}
                             autoComplete="on"
-                            required/><br />
+                            /><br />
                         <input
                             type="submit"
                             className="btn"
@@ -120,10 +133,10 @@ const ContactPage = () => {
                             autoComplete="on"/> 
                 </form>
             </div>
-            <footer>
-                <p>Turing Machines&#8482;</p>
-            </footer>
-    </body></>
+    </body> 
+    <footer>
+        <p>Turing Machines&#8482;</p>
+    </footer></>
    );
 }
 

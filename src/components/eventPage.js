@@ -8,6 +8,7 @@ const EventPage = () => {
     const [description, setDescription] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
+    const [colour, setColour] = useState("");
     const history = useHistory();
 
     const onChangeTitle = (e) => {
@@ -21,20 +22,25 @@ const EventPage = () => {
     };
 
     const onChangeStart = (e) => {
-        const start = e._d;
+        const start = e.target.value;
         setStart(start);
     }
 
     const onChangeEnd = (e) => {
-        const end = e._d;
+        const end = e.target.value;
         setEnd(end);
+    }
+
+    const onChangeColour = (e) => {
+        const colour = e.target.value;
+        setColour(colour);
     }
 
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
         axios.post("/events/add", 
-                {description: description, title: title, start_time:start, end_time:end}).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour:colour}).then(res => console.log(res));
         history.push("/");
     }
 
@@ -70,11 +76,32 @@ const EventPage = () => {
                                 name="Description"
                                 onChange={onChangeDescription}
                                 autoComplete="on"
-                                required/><br />
+                                /><br />
                         <label htmlFor="Start">Start:</label>
+                            <input
+                                type="datetime-local"
+                                className="input"
+                                name="Start"
+                                onChange={onChangeStart}
+                                /><br />
+                        <label htmlFor="End">End:</label>
+                            <input
+                                type="datetime-local"
+                                className="input"
+                                name="End"
+                                onChange={onChangeEnd}
+                                /><br />
+                        <label htmlFor="Colour">Set Colour:</label>
+                            <input
+                                type="color"
+                                className="input"
+                                name="Colour"
+                                onChange={onChangeColour}
+                                /><br />
+                       {/*} <label htmlFor="Start">Start:</label>
                             <Datetime onChange={onChangeStart}/>
                         <label htmlFor="End">End:</label>
-                            <Datetime onChange={onChangeEnd}/>
+    <Datetime onChange={onChangeEnd}/> */}
                             <input
                                 type="submit"
                                 className="btn"
@@ -84,10 +111,10 @@ const EventPage = () => {
                             /> 
                     </form>
                 </div>
-                <footer>
-                    <p>Turing Machines&#8482;</p>
-                </footer>
-        </body></>
+        </body>
+        <footer>
+            <p>Turing Machines&#8482;</p>
+        </footer></>
    );
 }
 

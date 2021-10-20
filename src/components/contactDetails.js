@@ -22,17 +22,23 @@ const ContactDetails = (props) => {
                 </nav>
             </div>
 		<body className = "App-header">
-			<div>
-				<img src = {item.photo} alt= {item.first_name + " " + item.last_name}/>
-				<p>{item.first_name} {item.last_name} </p>
-				<p>{item.comments}</p>
-				<p>{item.email}</p>
-				<b>{item.phone}</b>
+			<div className = "contact_details">
+				<img className = "contact_photo" src = {item.photo} alt= {item.first_name + " " + item.last_name}/>
+				<div className = "items">
+					<p className= "name">{item.first_name} {item.last_name} </p>
+					<p>{item.occupation}</p>
+					<p>{item.email}</p>
+					<p>{item.phone}</p>
+					<div className = "comments">
+						<p>Comments</p>
+						<p1>{item.comments}</p1>
+					</div>
+				</div>
 			</div>
-			<footer>
+		</body>
+		<footer>
 				<p>Turing Machines&#8482;</p>
-			</footer>
-		</body></>
+			</footer></>
 	);
 }
 export default ContactDetails;
