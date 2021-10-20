@@ -6,54 +6,62 @@
 // https://on.cypress.io/writing-first-test
 
 //group test together
-describe("Simple test", function() {
-    //first sub test
-    it('does not do much', function() {
-        expect(true).to.equal(true)
-    })
-})
 
-describe("Sample test", function() {
-    it('sample sub test', function() {
+describe("TS 1 2  visibility check", function() {
+    it('TS 1 Check contact visibility', function() {
     // Arrange - setup initial app state
+    // - visit a web page
+        cy.visit('http://localhost:3000/')   
+    // - query for an element
     // Act - take an action
+    // - interact with that element
     // Assertion - make an assertion
+    // - make an assertion about the page content
     })
+    it('TS 2 Check event visibility', function() {
+        // Arrange - setup initial app state
+        // - visit a web page
+            cy.visit('http://localhost:3000/')   
+        // - query for an element 
+        // Act - take an action
+        // - interact with that element
+        // Assertion - make an assertion
+        // - make an assertion about the page content
+        })
 })
 
-describe("TS 1 2 3 visibility check", function() {
-    it('TS 1 Check client visibility', function() {
+describe("Test 3 4 Check if buttons are visible and clickable", function() {
+    it('TS 3.1 4.1 check add contact clickable', function() {
     // Arrange - setup initial app state
     // - visit a web page
         cy.visit('http://localhost:3000/')
         cy.pause()
-    // - query for an element
         cy.contains('Add Contact').should('be.visible')
-        
-
-    // Act - take an action
-    // - interact with that element
-    // Assertion - make an assertion
-    // - make an assertion about the page content
-    })
-})
-
-describe("Test 4 Check if buttons are clickable", function() {
-    it('TS 4.1 check add contact clickable', function() {
-    // Arrange - setup initial app state
-    // - visit a web page
-        cy.visit('http://localhost:3000/')
-        cy.pause()
     // - query for an element
-    cy.contains('Add Contact').click()
+        cy.contains('Add Contact').click()
     // Act - take an action
     // - interact with that element
     // Assertion - make an assertion
     // - make an assertion about the page content
-    
         cy.url()
             .should('include','/addContact')
     })
+
+    it('TS 3.2 4.2 check add contact clickable', function() {
+        // Arrange - setup initial app state
+        // - visit a web page
+            cy.visit('http://localhost:3000/')
+            cy.pause()
+            cy.contains('Add Event').should('be.visible')
+        // - query for an element
+            cy.contains('Add Event').click()
+        // Act - take an action
+        // - interact with that element
+        // Assertion - make an assertion
+        // - make an assertion about the page content
+            cy.url()
+                .should('include','/addEvent')
+        })
 })
 
 
