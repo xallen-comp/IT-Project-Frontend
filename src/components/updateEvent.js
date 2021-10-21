@@ -5,6 +5,8 @@ import Datetime from 'react-datetime';
 import '../App.css';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import Button from '@mui/material/Button';
+
 
 //modied to add addContact button
 import React, { Component } from 'react'
@@ -17,6 +19,7 @@ const EventDetails = (props) => {
     const [description, setDescription] = useState("");
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
+    const [colour, setColour] = useState("");
     const history = useHistory();
 
     const onChangeTitle = (e) => {
@@ -39,11 +42,16 @@ const EventDetails = (props) => {
         setEnd(end);
     }
 
+    const onChangeColour = (e) => {
+        const colour = e.target.value;
+        setColour(colour);
+    }
+
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
         axios.post(`/events/${event._id}/update`, 
-                {description: description, title: title, start_time:start, end_time:end}).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour: colour}).then(res => console.log(res));
         history.push("/");
     }
 
@@ -79,6 +87,17 @@ const EventDetails = (props) => {
 
     
 	return (
+            <><div class="header">
+            <nav>
+                <h1 className = "logo"><a href="/">Event Tracker</a></h1>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Contacts</a></li>
+                    <li><a href="/">Events</a></li>
+                </ul>
+            </nav>
+        </div>
+        <body className = "App-header">
             <div>
                 <form className = 'form' onSubmit = {handleUpdate}>
                     <p>Enter the event's details below</p>
@@ -100,17 +119,37 @@ const EventDetails = (props) => {
                             onChange={onChangeDescription}
                             autoComplete="on"
                             required/><br />
-                    <label htmlFor="Start">Start:</label>
-                        <Datetime onChange={onChangeStart} defaultValue={event.start_time}/>
-                    <label htmlFor="End">End:</label>
-                        <Datetime onChange={onChangeEnd} defaultValue={event.end_time}/>
 
+                    <label htmlFor="Start">Start:</label>
+                        <input
+                            type="datetime-local"
+                            className="input"
+                            name="Start"
+                            onChange={onChangeStart}
+                            defaultValue={event.start_time}
+                            /><br />
+                    <label htmlFor="End">End:</label>
+                        <input
+                            type="datetime-local"
+                            className="input"
+                            name="End"
+                            onChange={onChangeEnd}
+                            defaultValue={event.end_time}
+                            /><br />
+
+
+                    <label htmlFor="Colour">Set Colour:</label>
+                        <input
+                            type="color"
+                            className="input"
+                            name="Colour"
+                            onChange={onChangeColour}
+                            defaultValue={event.colour}
+                            /><br />
 
                     <label htmlFor="Select Contact">Select Contact:</label>
                         <Select isMulti options  = {options2} />
-                    <div className = "add contact button">
-                        <Link to='/addContact' className='btn'>Add Contact</Link>                 
-                    </div>  
+                        <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
 
 
                         <input
@@ -122,6 +161,11 @@ const EventDetails = (props) => {
                         /> 
                 </form>
             </div>
+        </body>
+        <footer>
+            <p>Turing Machines&#8482;</p>
+        </footer></>
+
 	);
 }
 

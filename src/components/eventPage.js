@@ -90,7 +90,7 @@ const EventPage = () => {
             <body className = "App-header">
                 <div>
                     <form className = 'form' onSubmit = {handleUpdate}>
-                        <p>Enter the event's details blow</p>
+                        <p>Enter the event's details below</p>
                         <label htmlFor="Title">Title:</label>
                             <input
                                 type="text"

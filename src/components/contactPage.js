@@ -116,15 +116,6 @@ const ContactPage = () => {
                             onChange={onChangeOccupation}
                             autoComplete="on"
                             /><br />
-                    <label htmlFor="comments">Comments: </label>
-                        <input 
-                            type="text" 
-                            className="input"
-                            placeholder="Enter Comment" 
-                            name="comment" 
-                            onChange={onChangeComment}
-                            autoComplete="on"
-                            /><br />
                         <input
                             type="submit"
                             className="btn"
