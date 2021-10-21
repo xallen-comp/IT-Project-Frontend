@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import axios from "../services/backendApi.js";
 import Datetime from 'react-datetime';
+import Button from '@mui/material/Button';
+
 
 //modied to add addContact button
 import { Link } from 'react-router-dom';
@@ -130,9 +132,7 @@ const EventPage = () => {
                                 /><br />
                         <label htmlFor="Select Contact">Select Contact:</label>
                             <Select isMulti options = {options2} />
-                        <div className = "add contact button">
-                            <Link to='/addContact' className='btn'>Add Contact</Link>                 
-                        </div> 
+                        <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
 
                             <input
                                 type="submit"

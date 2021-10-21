@@ -33,7 +33,6 @@ const EventDetails = (props) => {
                     <p>Importance: {event.importance}</p>
                     <p>Reminder set for: {event.reminder}</p>
                     <p>{event.description}</p>
-                    <p>{event.colour}</p>
                     <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
             </div>
         </body>
