@@ -9,6 +9,7 @@ const ContactPage = () => {
     const [occupation, setOccupation] = useState("");
     const [phone, setPhone] = useState("");
     const [emailCheck, setEmailCheck] = useState(false);
+    const [file, setFile] = useState({selectedFile: null});
     const history = useHistory();
     const onChangeEmail = (e) => {
         const email = e.target.value;
@@ -35,7 +36,9 @@ const ContactPage = () => {
         const occupation = e.target.value;
         setOccupation(occupation);
     };
-
+    const onChangeFile = (e) => {
+        setFile({selectedFile: e.target.files[0]});
+    }
     const validateUpdate = () => {
         return emailCheck;
     }
@@ -43,8 +46,14 @@ const ContactPage = () => {
         console.log(firstName);
         console.log(lastName);
         e.preventDefault();
+        const formData = new FormData();
+        formData.append(
+            "file",
+            file.selectedFile
+        );
          if (true){
              axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone}).then(res => console.log(res));
+             axios.post("/contacts/upload", formData);
              history.push("/");
          }
     }
@@ -116,6 +125,12 @@ const ContactPage = () => {
                             onChange={onChangeOccupation}
                             autoComplete="on"
                             /><br />
+                      <label htmlFor="file">Select file: </label>
+                        <input
+                            type="file"
+                            className="input"
+                            onChange={onChangeFile}
+                        /><br/>
                         <input
                             type="submit"
                             className="btn"
