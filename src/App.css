@@ -125,7 +125,6 @@ text-align: center;
 /*CONTACT DETAILS -------------------------------------------------*/
 .contact_details{
   padding: 2% 10%;
-  padding-bottom: 10%;
 }
 
 .contact_photo{
@@ -137,7 +136,7 @@ margin-right: auto;
 }
 
 .items{
-  padding: 50px 0px;
+  padding-top: 50px;
   text-align: center;
 }
 .items p{
@@ -150,18 +149,28 @@ margin-right: auto;
 }
 
 .comments{
-  padding: 8% 15%;
-  width: 700px;
+  padding-top: 8%;
+  width: 70%;
   height: auto;
 }
 
 .comments p{
-  padding-bottom: 8%;
+  padding-left: 10%;
+  padding-bottom: 4%;
   text-align: left;
 }
-.comments p1{
-  font-size: calc(5px + 2vmin);
+
+.comment-body {
+  padding-left: 10%;
+  text-align: center;
 }
+
+.comment-body p1{
+  font-size: calc(5px + 2vmin);
+  text-align: center;
+  padding-right: 5%;
+}
+
 
 
 

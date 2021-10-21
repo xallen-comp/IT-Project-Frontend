@@ -64,10 +64,10 @@ const ContactDetails = (props) => {
 			</div>
 
 			<div className = "comments">
-                <h1>Comments</h1>
+                <p>Comments:</p>
                 {comments.map((note, key) => (
-					<>
-						<p>{note.comment_body}</p>
+					<div className="comment-body">
+						<p1>{note.comment_body}</p1>
 						<Button size="small" variant="outlined" color="error" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) {axios.delete(`/comments/${note._id}/delete`) }} }>
 									Remove
 						</Button>
@@ -77,7 +77,7 @@ const ContactDetails = (props) => {
 								<p>{note.title} </p>
 							</div>
 						</Link>
-					</>
+					</div>
                 ))}
             </div>
 			<form className = 'form' onSubmit = {handleUpdate}>
