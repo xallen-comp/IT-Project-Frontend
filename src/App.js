@@ -9,6 +9,7 @@ import ContactDetails from './components/contactDetails';
 import EventDetails from './components/eventDetails';
 import UpdateContact from './components/updateContact';
 import UpdateEvent from './components/updateEvent';
+import Comments from './components/comments';
 
 
 class App extends Component {
@@ -27,6 +28,9 @@ class App extends Component {
 				)}/>
 				<Route exact path ="/updateContact/:contactID" render = {(props) => (
 					<UpdateContact {...props}/>
+				)}/>
+				<Route exact path ="/contactComments/:contactID" render = {(props) => (
+					<Comments {...props}/>
 				)}/>
 				<Route exact path ="/updateEvent/:eventID" render = {(props) => (
 					<UpdateEvent {...props}/>
