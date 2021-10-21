@@ -17,15 +17,15 @@ describe("Test 5 Check if buttons are visible and clickable", function() {
         cy.contains('Last Name:').should('be.visible')
         cy.contains('Email:').should('be.visible')
         cy.contains('Phone:').should('be.visible')
-        cy.contains('Comments:').should('be.visible')
+        //cy.contains('Comments:').should('be.visible')
     
     })
 
     it('TS 7 check add contact clickable&  visivle', function() {
         cy.visit('http://localhost:3000/addContact')
-            cy.pause()
-            cy.contains('Add Contact').should('be.visible')
-            cy.contains('Add Contact').click()
+        cy.pause()
+        cy.contains('Add Contact').should('be.visible')
+        cy.contains('Add Contact').click()
         })
 })
 
