@@ -3,6 +3,12 @@ import { useHistory } from 'react-router-dom';
 import axios from "../services/backendApi.js";
 import Datetime from 'react-datetime';
 
+//modied to add addContact button
+import { Link } from 'react-router-dom';
+import React, { Component } from 'react'
+import Select from 'react-select'
+//------------------------------------
+
 const EventPage = () => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
@@ -35,6 +41,30 @@ const EventPage = () => {
         const colour = e.target.value;
         setColour(colour);
     }
+    //modified to add addContact button
+    const [items, setItems] = useState([]);
+
+    const GetContacts = () =>{
+        axios.get("/contacts").then(res => {setItems(res.data);})
+    }
+    useEffect(() => {
+            GetContacts();
+        }, [])
+    //console.log(items) 
+    
+    /*
+    const options = items.map((item, key) => (
+        <option>{item.first_name} {item.last_name}</option>
+    ))
+    */
+    const options2 = items.map((item, key) => (
+        { value: key, label: item.first_name+" "+item.la }
+        
+    ))
+    //console.log(options)  
+
+    //----------------------------------
+
 
     const handleUpdate = (e) => {
         console.log(e)
@@ -98,10 +128,12 @@ const EventPage = () => {
                                 name="Colour"
                                 onChange={onChangeColour}
                                 /><br />
-                       {/*} <label htmlFor="Start">Start:</label>
-                            <Datetime onChange={onChangeStart}/>
-                        <label htmlFor="End">End:</label>
-    <Datetime onChange={onChangeEnd}/> */}
+                        <label htmlFor="Select Contact">Select Contact:</label>
+                            <Select isMulti options = {options2} />
+                        <div className = "add contact button">
+                            <Link to='/addContact' className='btn'>Add Contact</Link>                 
+                        </div> 
+
                             <input
                                 type="submit"
                                 className="btn"

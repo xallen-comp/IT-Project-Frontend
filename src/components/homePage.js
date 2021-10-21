@@ -30,6 +30,7 @@ const HomePage = () => {
         GetContacts();
         GetEvents();
     }, [])
+
     return (
         
         <><div class="header">
