@@ -30,6 +30,7 @@ const HomePage = () => {
         GetContacts();
         GetEvents();
     }, [])
+
     return (
         
     <header className = "App-header">
@@ -42,7 +43,7 @@ const HomePage = () => {
                         <div className = "main bg1">
                         <Link to={`/contactDetails/${item._id}`}>
                             <img src = {item.photo} alt="Contact photos"/>
-                            <p>{item.first_name} {item.last_name} </p>
+                            <p>{item.first_name} {item.last_name}</p>
                         </Link>
                         </div>
                         ))}
