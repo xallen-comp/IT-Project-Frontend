@@ -6,8 +6,10 @@ const ContactPage = () => {
     const [lastName, setLastName] = useState("");
     const [comment, setComment] = useState("");
     const [email, setEmail] = useState("");
+    const [occupation, setOccupation] = useState("");
     const [phone, setPhone] = useState("");
     const [emailCheck, setEmailCheck] = useState(false);
+    const [file, setFile] = useState({selectedFile: null});
     const history = useHistory();
     const onChangeEmail = (e) => {
         const email = e.target.value;
@@ -30,7 +32,13 @@ const ContactPage = () => {
         const phone = e.target.value;
         setPhone(phone);
     };
-
+    const onChangeOccupation = (e) => {
+        const occupation = e.target.value;
+        setOccupation(occupation);
+    };
+    const onChangeFile = (e) => {
+        setFile({selectedFile: e.target.files[0]});
+    }
     const validateUpdate = () => {
         return emailCheck;
     }
@@ -38,8 +46,14 @@ const ContactPage = () => {
         console.log(firstName);
         console.log(lastName);
         e.preventDefault();
+        const formData = new FormData();
+        formData.append(
+            "file",
+            file.selectedFile
+        );
          if (true){
-             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, comments: comment, phone: phone}).then(res => console.log(res));
+             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone}).then(res => console.log(res));
+             axios.post("/contacts/upload", formData);
              history.push("/");
          }
     }
@@ -53,64 +67,82 @@ const ContactPage = () => {
     
     }
     return (
-    <header className = "App-header">
-        <div>
-            <form className='form' onSubmit={handleUpdate}>
-                <p>Enter the contact's details below</p>
-                <label htmlFor="firstName">First Name: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter FirstName" 
-                        name="firstName" 
-                        onChange={onChangeFirstName}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="lastName">Last Name: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter LastName" 
-                        name="lastName" 
-                        onChange={onChangeLastName}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="email">Email: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter Email" 
-                        name="email" 
-                        onChange={onChangeEmail}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="phone">Phone: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter Phone" 
-                        name="phone" 
-                        onChange={onChangePhone}
-                        autoComplete="on"
-                        required/><br />
-                <label htmlFor="comments">Comments: </label>
-                    <input 
-                        type="text" 
-                        className="input"
-                        placeholder="Enter Comment" 
-                        name="comment" 
-                        onChange={onChangeComment}
-                        autoComplete="on"
-                        required/><br />
-                    <input
-                        type="submit"
-                        className="btn"
-                        name="Add Contact"
-                        value="Add Contact"
-                        autoComplete="on"/> 
-            </form>
-        </div>
-   </header>
+            <><div class="header">
+                <nav>
+                    <h1 className = "logo"><a href="/">Event Tracker</a></h1>
+                    <ul class="nav-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/">Contacts</a></li>
+                        <li><a href="/">Events</a></li>
+                    </ul>
+                </nav>
+            </div>
+        <body className = "App-header">
+            <div>
+                <form className='form' onSubmit={handleUpdate}>
+                    <p>Enter the contact's details below</p>
+                    <label htmlFor="firstName">First Name: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter FirstName" 
+                            name="firstName" 
+                            onChange={onChangeFirstName}
+                            autoComplete="on"
+                            required/><br />
+                    <label htmlFor="lastName">Last Name: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter LastName" 
+                            name="lastName" 
+                            onChange={onChangeLastName}
+                            autoComplete="on"
+                            required/><br />
+                    <label htmlFor="email">Email: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter Email" 
+                            name="email" 
+                            onChange={onChangeEmail}
+                            autoComplete="on"/><br />
+                    <label htmlFor="phone">Phone: </label>
+                        <input 
+                            type="text" 
+                            className="input"
+                            placeholder="Enter Phone" 
+                            name="phone" 
+                            onChange={onChangePhone}
+                            autoComplete="on"
+                            /><br />
+                    <label htmlFor="occupation">Occupation: </label>
+                        <input 
+                            type="text"
+                            className="input"
+                            placeholder="Enter Occupation" 
+                            name="occupation" 
+                            onChange={onChangeOccupation}
+                            autoComplete="on"
+                            /><br />
+                      <label htmlFor="file">Select file: </label>
+                        <input
+                            type="file"
+                            className="input"
+                            onChange={onChangeFile}
+                        /><br/>
+                        <input
+                            type="submit"
+                            className="btn"
+                            name="Add Contact"
+                            value="Add Contact"
+                            autoComplete="on"/> 
+                </form>
+            </div>
+    </body> 
+    <footer>
+        <p>Turing Machines&#8482;</p>
+    </footer></>
    );
 }
 

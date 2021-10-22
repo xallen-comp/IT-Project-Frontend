@@ -13,14 +13,32 @@ const EventDetails = (props) => {
 		axios.get(url).then(res => {setEvent(res.data)})
     }, [props.match.params.eventID, url])
 	return (
-            <div>
-                <h1>{event.title}</h1>
-                <p> {event.start_time + " to " + event.end_time} </p>
-                <p>{event.importance}</p>
-                <p>Reminder set for {event.reminder}</p> &nbsp;
-                <p>{event.description}</p>
-                <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
+        <>
+            <div class="header">
+                <nav>
+                    <h1 className = "logo"><a href="/">Event Tracker</a></h1>
+                    <ul class="nav-links">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/">Contacts</a></li>
+                        <li><a href="/">Events</a></li>
+                    </ul>
+                </nav>
             </div>
+        <body className="App-header">
+            <div className = "event-details">
+                <h1>{event.title}</h1>
+                <div className = "splash-of-colour" style={{height: "20px", width: "100%", background: `${event.colour}`}}></div> 
+
+                    <p> {event.start_time + " to " + event.end_time} </p>
+                    <p>Importance: {event.importance}</p>
+                    <p>Reminder set for: {event.reminder}</p>
+                    <p>{event.description}</p>
+                    <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
+            </div>
+        </body>
+        <footer>
+                <p>Turing Machines&#8482;</p>
+        </footer></>
 	);
 }
 

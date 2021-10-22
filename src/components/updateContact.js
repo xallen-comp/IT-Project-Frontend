@@ -8,6 +8,7 @@ const UpdateContact = (props) => {
 	const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [comment, setComment] = useState("");
+    const [occupation, setOccupation] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [emailCheck, setEmailCheck] = useState(false);
@@ -38,6 +39,10 @@ const UpdateContact = (props) => {
         const phone = e.target.value;
         setPhone(phone);
     };
+    const onChangeOccupation = (e) => {
+        const occupation = e.target.value;
+        setOccupation(occupation);
+    };
 
     const validateUpdate = () => {
         return emailCheck;
@@ -47,7 +52,7 @@ const UpdateContact = (props) => {
         console.log(lastName);
         e.preventDefault();
          if (true){
-             axios.post(`/contacts/${item._id}/update`, {first_name: firstName, last_name: lastName, email: email, comments: comment, phone: phone}).then(res => console.log(res));
+             axios.post(`/contacts/${item._id}/update`, {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone}).then(res => console.log(res));
              history.push("/");
          }
     }
@@ -61,62 +66,88 @@ const UpdateContact = (props) => {
     
     }
 	return (
-		<div>
+		<>
+
+            <div class="header">
+            <nav>
+                <h1 className = "logo"><a href="/">Event Tracker</a></h1>
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">Contacts</a></li>
+                    <li><a href="/">Events</a></li>
+                </ul>
+            </nav>
+            </div>
+            <body className = "App-header">
+            <div>
             <form className='form' onSubmit={handleUpdate}>
                 <p>Enter the contact's details below</p>
                 <label htmlFor="firstName">First Name: </label>
                     <input 
                         type="text" 
                         className="input"
-						defaultValue={item.first_name}
+                        placeholder="Enter FirstName" 
                         name="firstName" 
                         onChange={onChangeFirstName}
                         autoComplete="on"
+                        defaultValue={item.first_name}
+
                         required/><br />
                 <label htmlFor="lastName">Last Name: </label>
                     <input 
                         type="text" 
                         className="input"
-                        defaultValue={item.last_name}
+                        placeholder="Enter LastName" 
                         name="lastName" 
                         onChange={onChangeLastName}
                         autoComplete="on"
+                        defaultValue={item.last_name}
+
                         required/><br />
                 <label htmlFor="email">Email: </label>
                     <input 
                         type="text" 
                         className="input"
-                        defaultValue={item.email}
+                        placeholder="Enter Email" 
                         name="email" 
                         onChange={onChangeEmail}
-                        autoComplete="on"
-                        required/><br />
+                        defaultValue={item.email}
+                        autoComplete="on"/><br />
                 <label htmlFor="phone">Phone: </label>
                     <input 
                         type="text" 
                         className="input"
-                        defaultValue={item.phone}
+                        placeholder="Enter Phone" 
                         name="phone" 
                         onChange={onChangePhone}
                         autoComplete="on"
-                        required/><br />
-                <label htmlFor="comments">Comments: </label>
+                        defaultValue={item.phone}
+
+                        /><br />
+                <label htmlFor="occupation">Occupation: </label>
                     <input 
-                        type="text" 
+                        type="text"
                         className="input"
-                        defaultValue={item.comments}
-                        name="comment" 
-                        onChange={onChangeComment}
+                        placeholder="Enter Occupation" 
+                        name="occupation" 
+                        onChange={onChangeOccupation}
                         autoComplete="on"
-                        required/><br />
+                        defaultValue={item.occupation}
+
+                        /><br />
                     <input
                         type="submit"
                         className="btn"
                         name="Update Contact"
                         value="Update Contact"
                         autoComplete="on"/>
-			</form> 		
-		</div>
+                </form> 
+            </div>
+        </body> 
+        <footer>
+        <p>Turing Machines&#8482;</p>
+        </footer></>
+
 	);
 }
 export default UpdateContact;
