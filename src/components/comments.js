@@ -21,7 +21,7 @@ const Comments = (props) => {
 	return (
             
             <div>
-                <h1> {comment.contact_id} Comments</h1>
+                <h1>Comments</h1>
                 {comments.map((item, key) => (
                     <p>{item.comment_body}</p>
                 ))}
