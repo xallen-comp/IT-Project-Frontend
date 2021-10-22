@@ -4,6 +4,8 @@ import axios from "../services/backendApi.js";
 import Datetime from 'react-datetime';
 import '../App.css';
 import { Link } from 'react-router-dom';
+import Button from '@mui/material/Button';
+
 
 const EventDetails = (props) => {
 	const [event, setEvent] = useState("");
@@ -31,9 +33,12 @@ const EventDetails = (props) => {
 
                     <p> {event.start_time + " to " + event.end_time} </p>
                     <p>Importance: {event.importance}</p>
-                    <p>Reminder set for: {event.reminder}</p>
+                    <p>Reminder set for: {event.reminder} minutes</p>
                     <p>{event.description}</p>
                     <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
+                    {/*<Button size="medium" variant="outlined" color="error" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) {axios.delete(`/events/${event._id}/delete`) }} }>
+                        Remove Event
+    </Button>*/}
             </div>
         </body>
         <footer>

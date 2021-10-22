@@ -101,6 +101,10 @@ const ContactDetails = (props) => {
 			</form>			
 			{//<Button size="large" variant="contained" href = {`/updateContact/${item._id}`} className='btn'> Update Contact</Button>
 			}<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
+			{/*<Button size="medium" variant="outlined" color="error" onClick={() => { if (window.confirm('Are you sure you wish to delete this item?')) {axios.delete(`/contacts/${item._id}/delete`) }} }>
+				Remove Contact
+		</Button>*/}
+			
 
 		</body>
 		<footer>
