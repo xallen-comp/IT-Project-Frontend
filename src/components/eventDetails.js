@@ -4,11 +4,21 @@ import axios from "../services/backendApi.js";
 import Datetime from 'react-datetime';
 import '../App.css';
 import moment from 'moment';
-import { Link } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+
 
 const EventDetails = (props) => {
 	const [event, setEvent] = useState("");
     const url = `/events/${props.match.params.eventID}`;
+    const history = useHistory();
+
+    const handleUpdate = (e) => {
+        console.log(e)
+        const data = {};
+        //e.preventDefault();
+        axios.post(`/events/${e}/delete`, data);
+        history.push("/");
+    }
 
     //adapted from css tricks
     const formatDate = (dateString) => {
@@ -41,6 +51,7 @@ const EventDetails = (props) => {
                     <p>Reminder set for: {event.reminder}</p>
                     <p>{event.description}</p>
                     <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
+                    <button onClick={()=>handleUpdate(event._id)} className='btn'>Delete Event</button>
             </div>
         </body>
         <footer>
