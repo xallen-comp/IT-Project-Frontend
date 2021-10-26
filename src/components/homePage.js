@@ -64,6 +64,7 @@ const HomePage = () => {
                 <div>             
                     <h1> Events </h1>
                     <FullCalendar
+                        timeZone= 'UTC'
                         plugins={[dayGridPlugin]}
                         events={calendarEvents}
                         //eventContent={renderEventContent}
