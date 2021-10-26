@@ -3,11 +3,18 @@ import React from "react";
 import axios from "../services/backendApi.js";
 import Datetime from 'react-datetime';
 import '../App.css';
+import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 const EventDetails = (props) => {
 	const [event, setEvent] = useState("");
     const url = `/events/${props.match.params.eventID}`;
+
+    //adapted from css tricks
+    const formatDate = (dateString) => {
+        const v = moment(dateString);
+        return v.format("LLL")
+    }
 	useEffect(() => {
 		setEvent(props.match.params.eventID);
 		axios.get(url).then(res => {setEvent(res.data)})
@@ -29,7 +36,7 @@ const EventDetails = (props) => {
                 <h1>{event.title}</h1>
                 <div className = "splash-of-colour" style={{height: "20px", width: "100%", background: `${event.colour}`}}></div> 
 
-                    <p> {event.start_time + " to " + event.end_time} </p>
+                    <p> {formatDate(event.start_time) + " to " + formatDate(event.end_time)} </p>
                     <p>Importance: {event.importance}</p>
                     <p>Reminder set for: {event.reminder}</p>
                     <p>{event.description}</p>
