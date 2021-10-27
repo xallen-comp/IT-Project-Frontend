@@ -140,18 +140,7 @@ const EventPage = () => {
                                 name="Add Event"
                                 value="Add Event"
                                 autoComplete="on"
-                            />
-                        <label htmlFor="Select Contact">Select Contact:</label>
-                            <Select isMulti options = {options2} />
-                        <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
-
-                            <input
-                                type="submit"
-                                className="btn"
-                                name="Add Event"
-                                value="Add Event"
-                                autoComplete="on"
-                            />                              
+                            />                           
                     </form>
                 </div>
         </body>
