@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import React from "react";
 import axios from "../services/backendApi.js";
-import { Link } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 
@@ -40,6 +40,14 @@ const ContactDetails = (props) => {
                 {contact_id: props.match.params.contactID, comment_body: note}).then(res => console.log(res));
         history.push("/");
     }
+
+	const handleDelete = (e) => {
+		console.log(e)
+		const data = {};
+		//e.preventDefault();
+		axios.post(`/events/${e}/delete`, data);
+		history.push("/");
+	}
 
 	return (
 		<><div class="header">
@@ -101,6 +109,7 @@ const ContactDetails = (props) => {
 			</form>			
 			{//<Button size="large" variant="contained" href = {`/updateContact/${item._id}`} className='btn'> Update Contact</Button>
 			}<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
+			<button onClick={()=>handleDelete(item._id)} className='btn'>Delete Contact</button>
 
 		</body>
 		<footer>
