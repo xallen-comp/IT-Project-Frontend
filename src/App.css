@@ -259,6 +259,17 @@ a:hover {text-decoration: none; color: inherit}
   font-size: 0.75em !important;
 }
 
+/* ----------------- form input css ------------------- */
+input {
+  border-radius: 5px;
+  border: 3px solid #4c72b0;
+  width: 300px;
+}
+
+input[name=phone], input[name=occupation], input[name=firstName], input[name=lastName] {
+  width: 120px;
+}
+
 
 
 
