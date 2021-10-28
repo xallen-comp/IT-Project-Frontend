@@ -46,13 +46,14 @@ const ContactPage = () => {
         console.log(firstName);
         console.log(lastName);
         e.preventDefault();
+        console.log(file.selectedFile.name);
         const formData = new FormData();
         formData.append(
             "file",
             file.selectedFile
         );
          if (true){
-             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone}).then(res => console.log(res));
+             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone, photo: file.selectedFile.name}).then(res => console.log(res));
              axios.post("/contacts/upload", formData);
              history.push("/");
          }
@@ -125,7 +126,7 @@ const ContactPage = () => {
                             onChange={onChangeOccupation}
                             autoComplete="on"
                             /><br />
-                      <label htmlFor="file">Select file: </label>
+                      <label htmlFor="file">Select cover photo: </label>
                         <input
                             type="file"
                             className="input"

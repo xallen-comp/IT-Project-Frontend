@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { useHistory } from 'react-router-dom';
 import React from "react";
 import axios from "../services/backendApi.js";
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 
 
 const ContactDetails = (props) => {
     const [note, setNote] = useState("");
+	const [image, setImage] = useState("");
     const history = useHistory();
 
 
@@ -22,9 +23,18 @@ const ContactDetails = (props) => {
         });
     }
 	const url = `/contacts/${props.match.params.contactID}`;
+	const grabImage = () => {
+			axios.get(url).then(res => {const name = res.data;
+			axios.post("/contacts/fetch", {"filename": name.photo}, {responseType: "arraybuffer"}).then(response => {
+			const theImage = new Buffer(response.data).toString('base64');
+			setImage(theImage);
+			});
+			});
+	}
 	useEffect(() => {
 		setItem(props.match.params.contactID);
 		GetComments();
+		grabImage();
 		axios.get(url).then(res => {setItem(res.data)})
     }, [props.match.params.contactID, url])
 
@@ -41,14 +51,6 @@ const ContactDetails = (props) => {
         history.push("/");
     }
 
-	const handleDelete = (e) => {
-		console.log(e)
-		const data = {};
-		//e.preventDefault();
-		axios.post(`/events/${e}/delete`, data);
-		history.push("/");
-	}
-
 	return (
 		<><div class="header">
                 <nav>
@@ -62,7 +64,7 @@ const ContactDetails = (props) => {
             </div>
 		<body className = "App-header">
 			<div className = "contact_details">
-				<img className = "contact_photo" src = {item.photo} alt= {item.first_name + " " + item.last_name}/>
+				<img className = "contact_photo" src ={`data:image/jpeg;base64,${image}`}/>
 				<div className = "items">
 					<p className= "name">{item.first_name} {item.last_name} </p>
 					<p>{item.occupation}</p>
@@ -109,7 +111,6 @@ const ContactDetails = (props) => {
 			</form>			
 			{//<Button size="large" variant="contained" href = {`/updateContact/${item._id}`} className='btn'> Update Contact</Button>
 			}<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
-			<button onClick={()=>handleDelete(item._id)} className='btn'>Delete Contact</button>
 
 		</body>
 		<footer>
