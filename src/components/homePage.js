@@ -12,8 +12,19 @@ const HomePage = () => {
     const [items, setItems] = useState([]);
     const [events, setEvents] = useState([]);
     const [calendarEvents, setCalendarEvents] = useState([]);
+    const [image, setImage] = useState("");
     const GetContacts = () =>{
-            axios.get("/contacts").then(res => {setItems(res.data);})
+            axios.get("/contacts").then(res => {
+            for(let index in res.data){
+                    axios.post("/contacts/fetch", {"filename": res.data[index].photo}, {responseType: "arraybuffer"}).then(response => {
+			                const theImage = new Buffer(response.data).toString('base64');
+                            res.data[index].photo = theImage;
+			                setImage(theImage);
+			        });
+                
+            }
+            setItems(res.data); 
+            })
     }
     const GetEvents = () =>{
         axios.get("/events").then(res => {
@@ -52,7 +63,7 @@ const HomePage = () => {
                                 {items.map((item, key) => (
                                 <div className = "main bg1">
                                 <Link to={`/contactDetails/${item._id}`}>
-                                    <img src = {item.photo} alt="Contact photos"/>
+                                    <img src = {`data:image/jpeg;base64,${item.photo}`} alt="Contact photos"/>
                                     <p className = "contact-link">{item.first_name} {item.last_name} </p>
                                 </Link>
                                 </div>
