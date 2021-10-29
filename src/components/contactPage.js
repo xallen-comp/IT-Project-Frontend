@@ -10,6 +10,9 @@ const ContactPage = () => {
     const [phone, setPhone] = useState("");
     const [emailCheck, setEmailCheck] = useState(false);
     const [file, setFile] = useState({selectedFile: null});
+    const [photo, setPhoto] = useState({selectedPhoto: null});
+    const [photoName, setPhotoName] = useState("");
+    const [fileName, setFileName] = useState("");
     const history = useHistory();
     const onChangeEmail = (e) => {
         const email = e.target.value;
@@ -38,6 +41,12 @@ const ContactPage = () => {
     };
     const onChangeFile = (e) => {
         setFile({selectedFile: e.target.files[0]});
+        setFileName(e.target.files[0].name);
+    }
+
+    const onChangePhoto = (e) => {
+        setPhoto({selectedPhoto: e.target.files[0]});
+        setPhotoName(e.target.files[0].name);
     }
     const validateUpdate = () => {
         return emailCheck;
@@ -47,19 +56,20 @@ const ContactPage = () => {
         console.log(lastName);
         e.preventDefault();
         const formData = new FormData();
+        const photoData = new FormData();
         formData.append(
             "file",
             file.selectedFile
         );
+        photoData.append(
+            "file",
+            photo.selectedPhoto
+        );
          if (true){ 
-            if(file.selectedFile){
-                axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone, photo: file.selectedFile.name}).then(res => console.log(res));
-                axios.post("/contacts/upload", formData);
-            }
-            else{
-                axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone}).then(res => console.log(res));
-            }
-             history.push("/");
+            axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone, photo: photoName, file: fileName}).then(res => console.log(res));
+            axios.post("/contacts/upload", formData).then(res => console.log(res));
+            axios.post("/contacts/upload", photoData).then(res => console.log(res));
+            history.push("/");
          }
     }
     //from webinfo 2021
@@ -130,11 +140,16 @@ const ContactPage = () => {
                             onChange={onChangeOccupation}
                             autoComplete="on"
                             /><br />
-                      <label htmlFor="file">Select cover photo: </label>
+                      <label htmlFor="file">Select file: </label>
                         <input
                             type="file"
                             className="input"
-                            onChange={onChangeFile}
+                            onChange={onChangeFile} /><br />
+                      <label htmlFor="photo">Select cover photo: </label>
+                        <input
+                            type="file"
+                            className="input"
+                            onChange={onChangePhoto}
                         /><br/>
                         <input
                             type="submit"
