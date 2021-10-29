@@ -20,6 +20,7 @@ const EventDetails = (props) => {
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [colour, setColour] = useState("");
+    const [importance, setImportance] = useState(null);
     const history = useHistory();
 
     const onChangeTitle = (e) => {
@@ -46,14 +47,19 @@ const EventDetails = (props) => {
         const colour = e.target.value;
         setColour(colour);
     }
+    const onChangeImportance = (e) => {
+        const importance = e.value;
+        setImportance(importance);
+    }
 
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
         axios.post(`/events/${event._id}/update`, 
-                {description: description, title: title, start_time:start, end_time:end, colour: colour}).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour: colour, importance: importance}).then(res => console.log(res));
         history.push("/");
     }
+    
 
     const url = `/events/${props.match.params.eventID}`;
 	useEffect(() => {
@@ -70,17 +76,21 @@ const EventDetails = (props) => {
     useEffect(() => {
             GetContacts();
         }, [])
-    //console.log(items) 
-    
-    /*
-    const options = items.map((item, key) => (
-        <option>{item.first_name} {item.last_name}</option>
-    ))
-    */
+  
+
     const options2 = items.map((item, key) => (
         { value: key, label: item.first_name+" "+item.la }
         
     ))
+
+    const options = [
+        { value: 'VeryHigh', label: 'Very High' },
+        { value: 'High', label: 'High' },
+        { value: 'Medium', label: 'Medium' },
+        { value: 'Low', label: 'Low' },
+        { value: 'VeryLow', label: 'Very Low' }
+      ]
+
     //console.log(options)  
 
     //----------------------------------
@@ -119,7 +129,8 @@ const EventDetails = (props) => {
                             onChange={onChangeDescription}
                             autoComplete="on"
                             required/><br />
-
+                    <label htmlFor="Importance">Importance</label>
+                            <Select onChange={onChangeImportance} options={options} placeholder={event.importance}/>
                     <label htmlFor="Start">Start:</label>
                         <input
                             type="datetime-local"

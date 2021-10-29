@@ -12,6 +12,13 @@ const EventDetails = (props) => {
     const url = `/events/${props.match.params.eventID}`;
     const history = useHistory();
 
+
+
+    const [contacts, setContacts] = useState([]);
+	const [contact, setContact] = useState("");
+
+
+
     const handleUpdate = (e) => {
         console.log(e)
         const data = {};
@@ -25,10 +32,26 @@ const EventDetails = (props) => {
         const v = moment(dateString);
         return v.format("LLL")
     }
+
+    const GetComments = (urltest) =>{
+        axios.get(urltest).then(res => {setContacts(res.data); setContact(res.data[0]);
+        });
+    }
+
+
 	useEffect(() => {
 		setEvent(props.match.params.eventID);
 		axios.get(url).then(res => {setEvent(res.data)})
+
+
+        const url2 = `/contacts/${event.contacts}`
+        GetComments(url2);
+		//axios.get(url2).then(res => {setContacts(res.data); setContact(res.data[0]);
+        
+
     }, [props.match.params.eventID, url])
+
+
 	return (
         <>
             <div class="header">
@@ -50,6 +73,7 @@ const EventDetails = (props) => {
                     <p>Importance: {event.importance}</p>
                     <p>Reminder set for: {event.reminder}</p>
                     <p>{event.description}</p>
+                    <p>Contact: {event.contacts} {contacts.first_name} {contacts.last_name}</p>
                     <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
                     <button onClick={()=>handleUpdate(event._id)} className='btn'>Delete Event</button>
             </div>
