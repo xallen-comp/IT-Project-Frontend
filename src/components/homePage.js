@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from "../services/backendApi.js";
 import HorizontalScroll from "react-scroll-horizontal";
+
 import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+
 import moment from 'moment';
 import '../App.css';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -76,7 +80,11 @@ const HomePage = () => {
                     <h1> Events </h1>
                     <FullCalendar
                         timeZone= 'UTC'
-                        plugins={[dayGridPlugin]}
+                        plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                        initialView="dayGridMonth"
+                        headerToolbar={{
+                        center: 'dayGridMonth,dayGridWeek,dayGridDay',
+        }}
                         events={calendarEvents}
                         //eventContent={renderEventContent}
                     />
