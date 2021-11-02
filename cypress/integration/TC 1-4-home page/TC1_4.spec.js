@@ -35,7 +35,6 @@ describe("Test 3 4 Check if buttons are visible and clickable", function() {
     // Arrange - setup initial app state
     // - visit a web page
         cy.visit('http://localhost:3000/')
-        cy.pause()
         cy.contains('Add Contact').should('be.visible')
     // - query for an element
         cy.contains('Add Contact').click()
@@ -47,11 +46,10 @@ describe("Test 3 4 Check if buttons are visible and clickable", function() {
             .should('include','/addContact')
     })
 
-    it('TS 3.2 4.2 check add contact clickable', function() {
+    it('TS 3.2 4.2 check add event clickable', function() {
         // Arrange - setup initial app state
         // - visit a web page
             cy.visit('http://localhost:3000/')
-            cy.pause()
             cy.contains('Add Event').should('be.visible')
         // - query for an element
             cy.contains('Add Event').click()
