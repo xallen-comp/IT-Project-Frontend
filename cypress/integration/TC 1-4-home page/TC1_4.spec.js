@@ -6,7 +6,12 @@
 // https://on.cypress.io/writing-first-test
 
 //group test together
-
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+  })
+  
 describe("TS 1 2  visibility check", function() {
     it('TS 1 Check contact visibility', function() {
     // Arrange - setup initial app state
