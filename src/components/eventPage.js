@@ -18,6 +18,7 @@ const EventPage = () => {
     const [end, setEnd] = useState("");
     const [colour, setColour] = useState("");
     const [importance, setImportance] = useState("Medium");
+    const [reminder, setReminder] = useState("30 Minutes");
     const [contacts, setContacts] = useState("");
     const history = useHistory();
 
@@ -51,6 +52,11 @@ const EventPage = () => {
         setImportance(importance);
     }
 
+    const onChangeReminder = (e) => {
+        const reminder = e.value;
+        setReminder(reminder);
+    }
+
    const onChangeContacts = (e) => {
         const contacts = e.value;
         setContacts(contacts);
@@ -82,13 +88,16 @@ const EventPage = () => {
         
     ))
 
+    const option3 = [
+        { value: '10 Hours', label: '10 Hours'}
+    ]
 
     const handleUpdate = (e) => {
         console.log("contacts")
         console.log("this is" +importance)
         e.preventDefault();
         axios.post("/events/add", 
-                {description: description, title: title, start_time:start, end_time:end, colour:colour, contacts: [contacts], importance:importance}).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour:colour, contacts: [contacts], importance:importance, reminder:reminder} ).then(res => console.log(res));
         history.push("/");
     }
 
@@ -118,6 +127,8 @@ const EventPage = () => {
                                 required/><br />
                         <label htmlFor="Importance">Importance</label>
                             <Select onChange={onChangeImportance} placeholder="Enter Importance" options={options}/>
+                        <label htmlFor="Reminder">Reminder</label>
+                            <Select onChange={onChangeReminder} placeholder="Enter Reminder" options={options3}/>
 
                         <label htmlFor="Description">Description:</label>
                             <input
