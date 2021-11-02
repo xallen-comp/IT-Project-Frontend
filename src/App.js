@@ -10,6 +10,7 @@ import EventDetails from './components/eventDetails';
 import UpdateContact from './components/updateContact';
 import UpdateEvent from './components/updateEvent';
 import Comments from './components/comments';
+import Login from './components/login';
 
 
 class App extends Component {
@@ -35,7 +36,9 @@ class App extends Component {
 				<Route exact path ="/updateEvent/:eventID" render = {(props) => (
 					<UpdateEvent {...props}/>
 				)}/>
-				
+				<Route exact path ="/login" render = {(props) => (
+					<Login {...props}/>
+				)}/>
 			</Switch>
 		</Router>
 		
