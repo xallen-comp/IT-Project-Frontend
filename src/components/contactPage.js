@@ -82,7 +82,7 @@ const ContactPage = () => {
             <div>
                 <form className='form' onSubmit={handleUpdate}>
                     <p>Enter the contact's details below</p>
-                    <label htmlFor="firstName">First Name: </label>
+                    
                         <input 
                             type="text" 
                             className="input"
@@ -91,7 +91,7 @@ const ContactPage = () => {
                             onChange={onChangeFirstName}
                             autoComplete="on"
                             required/><br />
-                    <label htmlFor="lastName">Last Name: </label>
+                    
                         <input 
                             type="text" 
                             className="input"
@@ -100,7 +100,7 @@ const ContactPage = () => {
                             onChange={onChangeLastName}
                             autoComplete="on"
                             required/><br />
-                    <label htmlFor="email">Email: </label>
+                    
                         <input 
                             type="text" 
                             className="input"
@@ -108,7 +108,7 @@ const ContactPage = () => {
                             name="email" 
                             onChange={onChangeEmail}
                             autoComplete="on"/><br />
-                    <label htmlFor="phone">Phone: </label>
+                    
                         <input 
                             type="text" 
                             className="input"
@@ -117,7 +117,7 @@ const ContactPage = () => {
                             onChange={onChangePhone}
                             autoComplete="on"
                             /><br />
-                    <label htmlFor="occupation">Occupation: </label>
+                    
                         <input 
                             type="text"
                             className="input"
@@ -130,6 +130,7 @@ const ContactPage = () => {
                         <input
                             type="file"
                             className="input"
+                            name="image"
                             onChange={onChangeFile}
                         /><br/>
                         <input
