@@ -135,7 +135,7 @@ const ContactPage = () => {
                         /><br/>
                         <input
                             type="submit"
-                            className="btn"
+                            className="btn contactform"
                             name="Add Contact"
                             value="Add Contact"
                             autoComplete="on"/> 

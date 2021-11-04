@@ -137,7 +137,7 @@ const UpdateContact = (props) => {
                         /><br />
                     <input
                         type="submit"
-                        className="btn"
+                        className="btn contactform"
                         name="Update Contact"
                         value="Update Contact"
                         autoComplete="on"/>

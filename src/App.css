@@ -162,6 +162,8 @@ margin-right: auto;
 .comment-body {
   padding-left: 10%;
   text-align: center;
+  position: relative;
+  top: 40px;
 }
 
 .comment-body p1{
@@ -250,6 +252,24 @@ a:hover {text-decoration: none; color: inherit}
   left: 10px;
 }
 
+.eventform {
+  position: relative;
+  top: 70px;
+  right: 5px;
+  width: 1250px;
+}
+
+.contactform {
+  position: relative;
+  width: 1250px;
+}
+
+.comment {
+  position: relative;
+  top: 30px;
+  right: 5px;
+}
+
 .fc {
   height: 1200px;
   width: 90vw;
@@ -259,7 +279,7 @@ a:hover {text-decoration: none; color: inherit}
   font-size: 0.75em !important;
 }
 
-/* ----------------- input form css ------------------- */
+/* ----------------- input form css (contacts and events) ------------------- */
 input {
   border-radius: 5px;
   border: 3px solid #000000;
@@ -304,6 +324,35 @@ input[name=image] {
   left: 58px;
 }
 
+input[name=title] {
+  position: relative;
+  top: 20px;
+}
+
+input[name=Description] {
+  width: 1250px;
+  position: relative;
+  top: 50px;
+}
+
+input[name=Start] {
+  width: 400px;
+  position: relative;
+  top: 80px;
+}
+
+input[name=End] {
+  width: 400px;
+  position: relative;
+  top: 30px;
+  left: 650px;
+}
+
+input[name=Colour] {
+  position: relative;
+  top: 200px;
+  width: 1250px;
+}
 
 @keyframes App-logo-spin {
   from {
