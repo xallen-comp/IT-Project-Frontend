@@ -43,6 +43,14 @@ const ContactDetails = (props) => {
         setNote(note);
     }
 
+	const handleUpdateDel = (e) => {
+        console.log(e)
+        const data = {};
+        //e.preventDefault();
+        axios.post(`/contacts/${e}/delete`, data);
+        history.push("/");
+    }
+
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
@@ -111,6 +119,7 @@ const ContactDetails = (props) => {
 			</form>			
 			{//<Button size="large" variant="contained" href = {`/updateContact/${item._id}`} className='btn'> Update Contact</Button>
 			}<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
+			<button onClick={()=>handleUpdateDel(item._id)} className='btn'>Delete Contact</button>
 
 		</body>
 		<footer>
