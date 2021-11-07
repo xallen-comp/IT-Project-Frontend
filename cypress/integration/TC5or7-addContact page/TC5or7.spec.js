@@ -7,7 +7,11 @@
 
 //group test together
 
-
+Cypress.on('uncaught:exception', (err, runnable) => {
+    // returning false here prevents Cypress from
+    // failing the test
+    return false
+  })
 
 describe("Test 5 Check if buttons are visible and clickable", function() {
     it('TS 5.1 Check for correct input prompts for add contact botton (name, phone number, etc)', function() {
