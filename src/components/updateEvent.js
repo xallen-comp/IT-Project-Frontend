@@ -101,7 +101,7 @@ const EventDetails = (props) => {
             <div>
                 <form className = 'form' onSubmit = {handleUpdate}>
                     <p>Enter the event's details below</p>
-                    <label htmlFor="Title">Title:</label>
+
                         <input
                             type="text"
                             className="input"
@@ -110,7 +110,7 @@ const EventDetails = (props) => {
                             onChange={onChangeTitle}
                             autoComplete="on"
                             required/><br />
-                    <label htmlFor="Description">Description:</label>
+
                         <input
                             type="text"
                             className="input"
@@ -120,7 +120,7 @@ const EventDetails = (props) => {
                             autoComplete="on"
                             required/><br />
 
-                    <label htmlFor="Start">Start:</label>
+                   
                         <input
                             type="datetime-local"
                             className="input"
@@ -128,7 +128,7 @@ const EventDetails = (props) => {
                             onChange={onChangeStart}
                             defaultValue={event.start_time}
                             /><br />
-                    <label htmlFor="End">End:</label>
+                    
                         <input
                             type="datetime-local"
                             className="input"
@@ -138,7 +138,7 @@ const EventDetails = (props) => {
                             /><br />
 
 
-                    <label htmlFor="Colour">Set Colour:</label>
+                    
                         <input
                             type="color"
                             className="input"
@@ -154,7 +154,7 @@ const EventDetails = (props) => {
 
                         <input
                             type="submit"
-                            className="btn"
+                            className="btn eventform"
                             name="Update Event"
                             value="Update Event"
                             autoComplete="on"

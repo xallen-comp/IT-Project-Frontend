@@ -91,16 +91,16 @@ const EventPage = () => {
                 <div>
                     <form className = 'form' onSubmit = {handleUpdate}>
                         <p>Enter the event's details below</p>
-                        <label htmlFor="Title">Title:</label>
+
                             <input
                                 type="text"
                                 className="input"
-                                placeholder="Enter Title:"
+                                placeholder="Enter Title"
                                 name="title"
                                 onChange={onChangeTitle}
                                 autoComplete="on"
                                 required/><br />
-                        <label htmlFor="Description">Description:</label>
+
                             <input
                                 type="text"
                                 className="input"
@@ -109,21 +109,21 @@ const EventPage = () => {
                                 onChange={onChangeDescription}
                                 autoComplete="on"
                                 /><br />
-                        <label htmlFor="Start">Start:</label>
+                        
                             <input
                                 type="datetime-local"
                                 className="input"
                                 name="Start"
                                 onChange={onChangeStart}
                                 /><br />
-                        <label htmlFor="End">End:</label>
+                        
                             <input
                                 type="datetime-local"
                                 className="input"
                                 name="End"
                                 onChange={onChangeEnd}
                                 /><br />
-                        <label htmlFor="Colour">Set Colour:</label>
+                        
                             <input
                                 type="color"
                                 className="input"
@@ -136,7 +136,7 @@ const EventPage = () => {
 
                             <input
                                 type="submit"
-                                className="btn"
+                                className="btn eventform"
                                 name="Add Event"
                                 value="Add Event"
                                 autoComplete="on"

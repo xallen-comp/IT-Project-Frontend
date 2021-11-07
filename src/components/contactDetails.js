@@ -110,7 +110,7 @@ const ContactDetails = (props) => {
 					required/><br />
 				<input
                         type="submit"
-                        className="btn"
+                        className="btn comment"
                         name="Add Comment"
                         value="Add Comment"
                         autoComplete="on"

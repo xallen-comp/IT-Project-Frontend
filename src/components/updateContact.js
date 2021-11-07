@@ -82,7 +82,7 @@ const UpdateContact = (props) => {
             <div>
             <form className='form' onSubmit={handleUpdate}>
                 <p>Enter the contact's details below</p>
-                <label htmlFor="firstName">First Name: </label>
+                
                     <input 
                         type="text" 
                         className="input"
@@ -93,7 +93,7 @@ const UpdateContact = (props) => {
                         defaultValue={item.first_name}
 
                         required/><br />
-                <label htmlFor="lastName">Last Name: </label>
+                
                     <input 
                         type="text" 
                         className="input"
@@ -104,7 +104,7 @@ const UpdateContact = (props) => {
                         defaultValue={item.last_name}
 
                         required/><br />
-                <label htmlFor="email">Email: </label>
+                
                     <input 
                         type="text" 
                         className="input"
@@ -113,7 +113,7 @@ const UpdateContact = (props) => {
                         onChange={onChangeEmail}
                         defaultValue={item.email}
                         autoComplete="on"/><br />
-                <label htmlFor="phone">Phone: </label>
+                
                     <input 
                         type="text" 
                         className="input"
@@ -124,7 +124,7 @@ const UpdateContact = (props) => {
                         defaultValue={item.phone}
 
                         /><br />
-                <label htmlFor="occupation">Occupation: </label>
+                
                     <input 
                         type="text"
                         className="input"
@@ -137,7 +137,7 @@ const UpdateContact = (props) => {
                         /><br />
                     <input
                         type="submit"
-                        className="btn"
+                        className="btn contactform"
                         name="Update Contact"
                         value="Update Contact"
                         autoComplete="on"/>
