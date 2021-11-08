@@ -42,12 +42,11 @@ const HomePage = () => {
         });
     }
     const [reminders, setReminders] = useState("");
-    const [reminder, setReminder] = useState("");
+    const PUT_DATE_HERE = ""
 	const GetReminders = () =>{
-        axios.get(`/events/getreminders`).then(res => {
+        axios.post(`/events/getreminders`, PUT_DATE_HERE).then(res => {
         setReminders(res.data);
         console.log(res.data)
-        setReminder(res.data[0]);
         });
     }
 
@@ -89,7 +88,7 @@ const HomePage = () => {
                     
                 <div>
 
-                    <h1>Reminders:{reminders[0]}</h1>
+                    <h1>Reminders: {reminders[0]}</h1>
 
                     <h1> Events </h1>
                     <FullCalendar
