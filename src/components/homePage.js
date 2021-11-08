@@ -14,6 +14,7 @@ import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const HomePage = () => {
     const [items, setItems] = useState([]);
+    const [newItems, setNewItems] = useState([]);
     const [events, setEvents] = useState([]);
     const [calendarEvents, setCalendarEvents] = useState([]);
     const [image, setImage] = useState("");
@@ -23,6 +24,7 @@ const HomePage = () => {
                     axios.post("/contacts/fetch", {"filename": res.data[index].photo}, {responseType: "arraybuffer"}).then(response => {
 			                const theImage = new Buffer(response.data).toString('base64');
                             res.data[index].photo = theImage;
+                            setNewItems(newItems.concat(res.data[index]));
 			                setImage(theImage);
 			        });
                 
@@ -44,6 +46,7 @@ const HomePage = () => {
     useEffect(() => {
         GetContacts();
         GetEvents();
+
     }, [])
 
     return (

@@ -4,11 +4,13 @@ import React from "react";
 import axios from "../services/backendApi.js";
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import { saveAs } from 'file-saver';
 
-
+//https://stackoverflow.com/questions/16245767/creating-a-blob-from-a-base64-string-in-javascript
 const ContactDetails = (props) => {
     const [note, setNote] = useState("");
 	const [image, setImage] = useState("");
+	const [file, setFile] = useState("");
     const history = useHistory();
 
 
@@ -31,11 +33,29 @@ const ContactDetails = (props) => {
 			});
 			});
 	}
+	const grabFile = () => {
+	axios.get(url).then(res => {const name = res.data;
+			axios.post("/contacts/fetch", {"filename": name.file}, {responseType: "arraybuffer"}).then(response => {
+			const theFile = new Buffer(response.data).toString('base64');
+			const byteCharacters = atob(theFile);
+			const byteNumbers = new Array(byteCharacters.length);
+			for (let i = 0; i < byteCharacters.length; i++) {
+				byteNumbers[i] = byteCharacters.charCodeAt(i);
+			}
+			const byteArray = new Uint8Array(byteNumbers);
+			const blob = new Blob([byteArray], {type: 'application/pdf'});
+			const url = URL.createObjectURL(blob);
+			setFile(url);
+	
+			});
+			});
+	}
 	useEffect(() => {
 		setItem(props.match.params.contactID);
 		GetComments();
 		grabImage();
-		axios.get(url).then(res => {setItem(res.data)})
+		grabFile();
+		axios.get(url).then(res => {setItem(res.data); console.log(res.data);})
     }, [props.match.params.contactID, url])
 
 	const onChangeNote = (e) => {
@@ -117,7 +137,7 @@ const ContactDetails = (props) => {
                     /> 
 
 			</form>			
-			{//<Button size="large" variant="contained" href = {`/updateContact/${item._id}`} className='btn'> Update Contact</Button>
+			{<Button size="large" variant="contained" href = {file} className='btn'> DownLoad File</Button>
 			}<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
 			<button onClick={()=>handleUpdateDel(item._id)} className='btn'>Delete Contact</button>
 
