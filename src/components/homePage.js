@@ -62,7 +62,7 @@ const HomePage = () => {
                     <div className= "horizon">
                         <HorizontalScroll>
                             <div className = "main bg">
-                                <Link to='/addContact' className='btn contact'>Add Contact</Link>
+                                <Link to='/addContact' className='btn contact'>+</Link>
                             </div>
                                 {items.map((item, key) => (
                                 <div className = "main bg1">
