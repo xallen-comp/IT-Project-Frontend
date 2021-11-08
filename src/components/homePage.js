@@ -41,7 +41,18 @@ const HomePage = () => {
         setCalendarEvents(cEvents);
         });
     }
+    const [reminders, setReminders] = useState("");
+    const [reminder, setReminder] = useState("");
+	const GetReminders = () =>{
+        axios.get(`/events/getreminders`).then(res => {
+        setReminders(res.data);
+        console.log(res.data)
+        setReminder(res.data[0]);
+        });
+    }
+
     useEffect(() => {
+        GetReminders();
         GetContacts();
         GetEvents();
     }, [])
@@ -76,7 +87,10 @@ const HomePage = () => {
                     </div> 
 
                     
-                <div>             
+                <div>
+
+                    <h1>Reminders:{reminders[0]}</h1>
+
                     <h1> Events </h1>
                     <FullCalendar
                         timeZone= 'UTC'

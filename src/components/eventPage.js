@@ -17,6 +17,9 @@ const EventPage = () => {
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [colour, setColour] = useState("");
+    const [importance, setImportance] = useState("Medium");
+    const [reminder, setReminder] = useState("30 Minutes");
+    const [contacts, setContacts] = useState("");
     const history = useHistory();
 
     const onChangeTitle = (e) => {
@@ -43,6 +46,24 @@ const EventPage = () => {
         const colour = e.target.value;
         setColour(colour);
     }
+
+    const onChangeImportance = (e) => {
+        const importance = e.value;
+        setImportance(importance);
+    }
+
+    const onChangeReminder = (e) => {
+        const reminder = e.value;
+        setReminder(reminder);
+    }
+
+   const onChangeContacts = (e) => {
+        const contacts = e.value;
+        setContacts(contacts);
+    }
+    
+
+
     //modified to add addContact button
     const [items, setItems] = useState([]);
 
@@ -54,25 +75,35 @@ const EventPage = () => {
         }, [])
     //console.log(items) 
     
-    /*
-    const options = items.map((item, key) => (
-        <option>{item.first_name} {item.last_name}</option>
-    ))
-    */
+    const options = [
+        { value: 'Very High', label: 'Very High' },
+        { value: 'High', label: 'High' },
+        { value: 'Medium', label: 'Medium' },
+        { value: 'Low', label: 'Low' },
+        { value: 'Very Low', label: 'Very Low' }
+      ]
+
     const options2 = items.map((item, key) => (
-        { value: key, label: item.first_name+" "+item.last_name }
+        { value: item._id, label: item.first_name+" "+item.last_name }
         
     ))
-    //console.log(options)  
 
-    //----------------------------------
-
+    const options3 = [
+        { value: 15, label: '15 Minutes'},
+        { value: 30, label: '30 Minutes'},
+        { value: 60, label: '1 Hour'},
+        { value: 10*60, label: '10 Hours'},
+        { value: 24*60, label: '1 Day'},
+        { value: 7*24*60, label: '1 Week'},
+        { value: 0, label: 'None'}
+    ]
 
     const handleUpdate = (e) => {
-        console.log(e)
+        console.log("contacts")
+        console.log("this is" +importance)
         e.preventDefault();
         axios.post("/events/add", 
-                {description: description, title: title, start_time:start, end_time:end, colour:colour}).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour:colour, contacts: [contacts], importance:importance, reminder:reminder} ).then(res => console.log(res));
         history.push("/");
     }
 
@@ -100,6 +131,10 @@ const EventPage = () => {
                                 onChange={onChangeTitle}
                                 autoComplete="on"
                                 required/><br />
+                        <label htmlFor="Importance">Importance</label>
+                            <Select onChange={onChangeImportance} placeholder="Enter Importance" options={options}/>
+                        <label htmlFor="Reminder">Reminder</label>
+                            <Select onChange={onChangeReminder} placeholder="Enter Reminder" options={options3}/>
 
                             <input
                                 type="text"
@@ -109,34 +144,35 @@ const EventPage = () => {
                                 onChange={onChangeDescription}
                                 autoComplete="on"
                                 /><br />
-                        
+                
                             <input
                                 type="datetime-local"
                                 className="input"
                                 name="Start"
                                 onChange={onChangeStart}
                                 /><br />
-                        
+                    
                             <input
                                 type="datetime-local"
                                 className="input"
                                 name="End"
                                 onChange={onChangeEnd}
                                 /><br />
-                        
-                            <input
+
+                                <input
                                 type="color"
                                 className="input"
                                 name="Colour"
                                 onChange={onChangeColour}
                                 /><br />
                         <label htmlFor="Select Contact">Select Contact:</label>
-                            <Select isMulti options = {options2} />
+                            <Select onChange={onChangeContacts} options = {options2} />
+
                         <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
 
                             <input
                                 type="submit"
-                                className="btn eventform"
+                                className="btn"
                                 name="Add Event"
                                 value="Add Event"
                                 autoComplete="on"

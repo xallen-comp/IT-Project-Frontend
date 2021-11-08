@@ -20,6 +20,8 @@ const EventDetails = (props) => {
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [colour, setColour] = useState("");
+    const [importance, setImportance] = useState(null);
+    const [reminder, setReminder] = useState(null);
     const history = useHistory();
 
     const onChangeTitle = (e) => {
@@ -46,14 +48,24 @@ const EventDetails = (props) => {
         const colour = e.target.value;
         setColour(colour);
     }
+    const onChangeImportance = (e) => {
+        const importance = e.value;
+        setImportance(importance);
+    }
+
+    const onChangeReminder = (e) => {
+        const reminder = e.value;
+        setReminder(reminder);
+    }
 
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
         axios.post(`/events/${event._id}/update`, 
-                {description: description, title: title, start_time:start, end_time:end, colour: colour}).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour: colour, importance: importance, reminder: reminder}).then(res => console.log(res));
         history.push("/");
     }
+
 
     const url = `/events/${props.match.params.eventID}`;
 	useEffect(() => {
@@ -70,17 +82,31 @@ const EventDetails = (props) => {
     useEffect(() => {
             GetContacts();
         }, [])
-    //console.log(items) 
-    
-    /*
-    const options = items.map((item, key) => (
-        <option>{item.first_name} {item.last_name}</option>
-    ))
-    */
-    const options2 = items.map((item, key) => (
-        { value: key, label: item.first_name+" "+item.last_name }
-        
-    ))
+   
+
+        const options2 = items.map((item, key) => (
+            { value: key, label: item.first_name+" "+item.last_name }
+            
+        ))
+
+    const options = [
+        { value: 'Very High', label: 'Very High' },
+        { value: 'High', label: 'High' },
+        { value: 'Medium', label: 'Medium' },
+        { value: 'Low', label: 'Low' },
+        { value: 'Very Low', label: 'Very Low' }
+      ]
+
+
+    const options3 = [
+        { value: 15, label: '15 Minutes'},
+        { value: 30, label: '30 Minutes'},
+        { value: 60, label: '1 Hour'},
+        { value: 10*60, label: '10 Hours'},
+        { value: 24*60, label: '1 Day'},
+        { value: 7*24*60, label: '1 Week'},
+        { value: 0, label: 'None'}
+    ]
     //console.log(options)  
 
     //----------------------------------
@@ -119,6 +145,11 @@ const EventDetails = (props) => {
                             onChange={onChangeDescription}
                             autoComplete="on"
                             required/><br />
+
+                        <label htmlFor="Importance">Importance</label>
+                            <Select onChange={onChangeImportance} placeholder="Enter Importance" options={options} placeholder={event.importance}/>
+                        <label htmlFor="Reminder">Reminder</label>
+                            <Select onChange={onChangeReminder} placeholder="Enter Reminder" options={options3} placeholder={event.reminder}/>
 
                    
                         <input
