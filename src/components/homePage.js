@@ -16,6 +16,7 @@ const HomePage = () => {
     const [items, setItems] = useState([]);
     const [events, setEvents] = useState([]);
     const [calendarEvents, setCalendarEvents] = useState([]);
+    const [reminders, setReminders] = useState([]);
     const [image, setImage] = useState("");
     const GetContacts = () =>{
             axios.get("/contacts").then(res => {
@@ -41,12 +42,17 @@ const HomePage = () => {
         setCalendarEvents(cEvents);
         });
     }
-    const [reminders, setReminders] = useState("");
-    const PUT_DATE_HERE = ""
 	const GetReminders = () =>{
-        axios.post(`/events/getreminders`, PUT_DATE_HERE).then(res => {
-        setReminders(res.data);
-        console.log(res.data)
+        const date = Date.now();
+        axios.post(`/events/getreminders`, {"now": date}).then(res => {
+            console.log(res.data);
+            let eventsR = []
+            for(let index in res.data){
+                let obj = {title: res.data[index].title}
+                eventsR.push(obj)
+            }
+            setReminders(eventsR);
+            console.log(typeof(res.data));   
         });
     }
 
@@ -88,7 +94,7 @@ const HomePage = () => {
                     
                 <div>
 
-                    <h1>Reminders: {reminders[0]}</h1>
+                    <h1>Reminders: {reminders.map((reminder, key) => (<div><p> {reminder.title}</p></div>))}</h1>
 
                     <h1> Events </h1>
                     <FullCalendar
