@@ -18,7 +18,7 @@ const EventPage = () => {
     const [end, setEnd] = useState("");
     const [colour, setColour] = useState("");
     const [importance, setImportance] = useState("Medium");
-    const [reminder, setReminder] = useState("30 Minutes");
+    const [reminder, setReminder] = useState([]);
     const [contacts, setContacts] = useState("");
     const history = useHistory();
 
@@ -53,8 +53,11 @@ const EventPage = () => {
     }
 
     const onChangeReminder = (e) => {
-        const reminder = e.value;
-        setReminder(reminder);
+        const reminders = []
+        for(let index in e){
+            reminders.push(e[index].value);
+        }
+        setReminder(reminders);
     }
 
    const onChangeContacts = (e) => {
@@ -62,7 +65,6 @@ const EventPage = () => {
         setContacts(contacts);
     }
     
-
 
     //modified to add addContact button
     const [items, setItems] = useState([]);
@@ -73,7 +75,6 @@ const EventPage = () => {
     useEffect(() => {
             GetContacts();
         }, [])
-    //console.log(items) 
     
     const options = [
         { value: 'Very High', label: 'Very High' },
@@ -167,6 +168,8 @@ const EventPage = () => {
                                 /><br />
                         <label htmlFor="Select Contact">Select Contact:</label>
                             <Select onChange={onChangeContacts} options = {options2} />
+                        <label htmlFor="Select Contact">Select Reminder:</label>
+                            <Select isMulti options= {options3} onChange={onChangeReminder}/>
 
                         <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
 

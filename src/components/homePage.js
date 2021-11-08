@@ -7,6 +7,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import Button from '@mui/material/Button';
 
 import moment from 'moment';
 import '../App.css';
@@ -48,7 +49,7 @@ const HomePage = () => {
             console.log(res.data);
             let eventsR = []
             for(let index in res.data){
-                let obj = {title: res.data[index].title}
+                let obj = {title: res.data[index].title, reminder: res.data[index].reminder, _id: res.data[index]._id}
                 eventsR.push(obj)
             }
             setReminders(eventsR);
@@ -56,6 +57,9 @@ const HomePage = () => {
         });
     }
 
+    const DeleteReminder = (val) =>{
+         axios.post(`/events/${val._id}/deleteReminder`, {"reminder": val.reminder}).then(res => {console.log(res)});
+    }
     useEffect(() => {
         GetReminders();
         GetContacts();
@@ -94,7 +98,7 @@ const HomePage = () => {
                     
                 <div>
 
-                    <h1>Reminders: {reminders.map((reminder, key) => (<div><p> {reminder.title}</p></div>))}</h1>
+                    <h1>Reminders: {reminders.map((reminder, key) => (<div><p> {reminder.title}</p> <button onClick={() => DeleteReminder(reminder)}>Received Reminder</button></div>))}</h1>
 
                     <h1> Events </h1>
                     <FullCalendar
