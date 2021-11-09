@@ -43,7 +43,8 @@ const ContactDetails = (props) => {
 				byteNumbers[i] = byteCharacters.charCodeAt(i);
 			}
 			const byteArray = new Uint8Array(byteNumbers);
-			const blob = new Blob([byteArray], {type: 'application/pdf'});
+			console.log(name.contact_type);
+			const blob = new Blob([byteArray], {type: name.contact_type});
 			const url = URL.createObjectURL(blob);
 			setFile(url);
 	
@@ -137,8 +138,8 @@ const ContactDetails = (props) => {
                     /> 
 
 			</form>			
-			{<Button size="large" variant="contained" href = {file} className='btn'> DownLoad File</Button>
-			}<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
+			<Button size="large" variant="contained" href = {file} className='btn'> DownLoad File</Button>
+			<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
 			<button onClick={()=>handleUpdateDel(item._id)} className='btn'>Delete Contact</button>
 
 		</body>

@@ -18,6 +18,7 @@ const UpdateContact = (props) => {
     const [fileName, setFileName] = useState("");
     const [photoPrev, setPhotoPrev] = useState("");
     const [filePrev, setFilePrev] = useState("");
+    const [fileType, setFileType] = useState("");
     const history = useHistory();
 	const url = `/contacts/${props.match.params.contactID}`;
 	useEffect(() => {
@@ -51,6 +52,7 @@ const UpdateContact = (props) => {
     };
     const onChangeFile = (e) => {
         setFile({selectedFile: e.target.files[0]});
+        setFileType(e.target.files[0].type);
         setFileName(e.target.files[0].name);
     }
 
@@ -75,7 +77,7 @@ const UpdateContact = (props) => {
             photo.selectedPhoto
         );
          if (true){
-             axios.post(`/contacts/${item._id}/update`, {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone, photo: photoName, file: fileName}).then(res => console.log(res));
+             axios.post(`/contacts/${item._id}/update`, {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone, photo: photoName, file: fileName, contact_type: fileType}).then(res => console.log(res));
              axios.post("/contacts/upload", formData).then(res => console.log(res));
              axios.post("/contacts/upload", photoData).then(res => console.log(res));
              if(photoPrev != photoName && photoName != ""){
