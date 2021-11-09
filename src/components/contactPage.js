@@ -13,6 +13,7 @@ const ContactPage = () => {
     const [photo, setPhoto] = useState({selectedPhoto: null});
     const [photoName, setPhotoName] = useState("");
     const [fileName, setFileName] = useState("");
+    const [fileType, setFileType] = useState("");
     const history = useHistory();
     const onChangeEmail = (e) => {
         const email = e.target.value;
@@ -41,6 +42,7 @@ const ContactPage = () => {
     };
     const onChangeFile = (e) => {
         setFile({selectedFile: e.target.files[0]});
+        setFileType(e.target.files[0].type);
         setFileName(e.target.files[0].name);
     }
 
@@ -52,8 +54,6 @@ const ContactPage = () => {
         return emailCheck;
     }
     const handleUpdate = (e) => {
-        console.log(firstName);
-        console.log(lastName);
         e.preventDefault();
         const formData = new FormData();
         const photoData = new FormData();
@@ -66,7 +66,7 @@ const ContactPage = () => {
             photo.selectedPhoto
         );
          if (true){ 
-            axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone, photo: photoName, file: fileName}).then(res => console.log(res));
+            axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone, photo: photoName, file: fileName, contact_type: fileType}).then(res => console.log(res));
             axios.post("/contacts/upload", formData).then(res => console.log(res));
             axios.post("/contacts/upload", photoData).then(res => console.log(res));
             history.push("/");
