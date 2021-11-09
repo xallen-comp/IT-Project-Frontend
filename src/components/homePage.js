@@ -98,7 +98,7 @@ const HomePage = () => {
                     
                 <div>
 
-                    <h1>Reminders: {reminders.map((reminder, key) => (<div><p> {reminder.title}</p> <button onClick={() => DeleteReminder(reminder)}>Received Reminder</button></div>))}</h1>
+                    <h1>Reminders: {reminders.map((reminder, key) => (<div><p> {reminder.title}</p> <button className = "remindbutton" onClick={() => DeleteReminder(reminder)}>Received Reminder</button></div>))}</h1>
 
                     <h1> Events </h1>
                     <FullCalendar
