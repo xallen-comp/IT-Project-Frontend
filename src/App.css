@@ -251,7 +251,7 @@ a:hover {text-decoration: none; color: inherit}
   min-height: 40px;
   padding: 0px;
   position: relative;
-  left: 10px;
+  left: 1vw;
   font-size: 3em;
   line-height: 12vmin;
 }
