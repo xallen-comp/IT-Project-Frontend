@@ -138,7 +138,7 @@ const ContactDetails = (props) => {
                     /> 
 
 			</form>			
-			<Button size="large" variant="contained" href = {file} className='btn'> DownLoad File</Button>
+			{item.contact_type && (<Button size="large" variant="contained" href = {file} className='btn'> DownLoad File</Button>)}
 			<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
 			<button onClick={()=>handleUpdateDel(item._id)} className='btn'>Delete Contact</button>
 
