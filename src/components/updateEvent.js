@@ -22,6 +22,8 @@ const EventDetails = (props) => {
     const [colour, setColour] = useState("");
     const [importance, setImportance] = useState(null);
     const [reminder, setReminder] = useState(null);
+    const [oldReminder, setOldReminder] = useState(null);
+    const [contacts, setContacts] = useState([]);
     const history = useHistory();
 
     const onChangeTitle = (e) => {
@@ -54,15 +56,18 @@ const EventDetails = (props) => {
     }
 
     const onChangeReminder = (e) => {
-        const reminder = e.value;
-        setReminder(reminder);
+        const reminders = []
+        for(let index in e){
+            reminders.push(e[index].value);
+        }
+        setReminder(reminders);
     }
 
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
         axios.post(`/events/${event._id}/update`, 
-                {description: description, title: title, start_time:start, end_time:end, colour: colour, importance: importance, reminder: reminder}).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour: colour, importance: importance, reminder: reminder, contacts: contacts}).then(res => console.log(res));
         history.push("/");
     }
 
@@ -70,7 +75,10 @@ const EventDetails = (props) => {
     const url = `/events/${props.match.params.eventID}`;
 	useEffect(() => {
 		setEvent(props.match.params.eventID);
-		axios.get(url).then(res => {setEvent(res.data)})
+		axios.get(url).then(res => {
+            setEvent(res.data)
+            setOldReminder(res.data.reminder)
+        })
     }, [props.match.params.eventID, url])
 
     //modified to add addContact button
@@ -126,7 +134,7 @@ const EventDetails = (props) => {
         <body className = "App-header">
             <div>
                 <form className = 'form' onSubmit = {handleUpdate}>
-                    <p>Enter the event's details below</p>
+                    <p className = "title" >Update Event</p>
 
                         <input
                             type="text"
@@ -137,20 +145,12 @@ const EventDetails = (props) => {
                             autoComplete="on"
                             required/><br />
 
-                        <input
-                            type="text"
-                            className="input"
-                            defaultValue={event.description}
-                            name="Description"
-                            onChange={onChangeDescription}
-                            autoComplete="on"
-                            required/><br />
+                        <div className="import">
 
-                        <label htmlFor="Importance">Importance</label>
                             <Select onChange={onChangeImportance} placeholder="Enter Importance" options={options} placeholder={event.importance}/>
-                        <label htmlFor="Reminder">Reminder</label>
-                            <Select onChange={onChangeReminder} placeholder="Enter Reminder" options={options3} placeholder={event.reminder}/>
+                        </div>
 
+                        <textarea rows="3" cols="80" onChange={onChangeDescription} placeholder="Enter Description"/>
                    
                         <input
                             type="datetime-local"
@@ -178,10 +178,13 @@ const EventDetails = (props) => {
                             defaultValue={event.colour}
                             /><br />
 
-                    <label htmlFor="Select Contact">Select Contact:</label>
-                        <Select isMulti options  = {options2} />
-                        <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
-
+                        <div className="contacts">
+                            <Select isMulti options  = {options2} placeholder="Enter Contacts..."/>
+                            <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
+                        </div>
+                        <div className="reminder">
+                            <Select isMulti options= {options3} onChange={onChangeReminder} placeholder={oldReminder}/>
+                        </div>
 
                         <input
                             type="submit"

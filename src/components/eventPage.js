@@ -18,8 +18,8 @@ const EventPage = () => {
     const [end, setEnd] = useState("");
     const [colour, setColour] = useState("");
     const [importance, setImportance] = useState("Medium");
-    const [reminder, setReminder] = useState([]);
-    const [contacts, setContacts] = useState("");
+    const [reminder, setReminder] = useState([0]);
+    const [contacts, setContacts] = useState([]);
     const history = useHistory();
 
     const onChangeTitle = (e) => {
@@ -61,8 +61,11 @@ const EventPage = () => {
     }
 
    const onChangeContacts = (e) => {
-        const contacts = e.value;
-        setContacts(contacts);
+        const contact = []
+        for(let index in e){
+            contact.push(e[index].value);
+        }
+        setContacts(contact);
     }
     
 
@@ -104,25 +107,23 @@ const EventPage = () => {
         console.log("this is" +importance)
         e.preventDefault();
         axios.post("/events/add", 
-                {description: description, title: title, start_time:start, end_time:end, colour:colour, contacts: [contacts], importance:importance, reminder:reminder} ).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour:colour, contacts: contacts, importance:importance, reminder:reminder} ).then(res => console.log(res));
         history.push("/");
     }
 
     return (
-        <><div class="header">
+        <><div className="header">
                 <nav>
                     <h1 className = "logo"><a href="/">Event Tracker</a></h1>
-                    <ul class="nav-links">
+                    <ul className="nav-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/">Contacts</a></li>
-                        <li><a href="/">Events</a></li>
                     </ul>
                 </nav>
             </div>
             <body className = "App-header">
                 <div>
                     <form className = 'form' onSubmit = {handleUpdate}>
-                        <p>Enter the event's details below</p>
+                        <p className = "title" >New Event</p>
 
                             <input
                                 type="text"
@@ -132,19 +133,13 @@ const EventPage = () => {
                                 onChange={onChangeTitle}
                                 autoComplete="on"
                                 required/><br />
-                        <label htmlFor="Importance">Importance</label>
-                            <Select onChange={onChangeImportance} placeholder="Enter Importance" options={options}/>
-                        <label htmlFor="Reminder">Reminder</label>
-                            <Select onChange={onChangeReminder} placeholder="Enter Reminder" options={options3}/>
 
-                            <input
-                                type="text"
-                                className="input"
-                                placeholder="Enter Description"
-                                name="Description"
-                                onChange={onChangeDescription}
-                                autoComplete="on"
-                                /><br />
+                            <div className = "import">
+                                <Select onChange={onChangeImportance} placeholder="Enter Importance..." options={options}/>
+                            </div>
+
+
+                            <textarea rows="3" cols="350" onChange={onChangeDescription} placeholder="Enter Description"/>
                 
                             <input
                                 type="datetime-local"
@@ -160,18 +155,24 @@ const EventPage = () => {
                                 onChange={onChangeEnd}
                                 /><br />
 
+                                <div className = "colourSelect">
                                 <input
                                 type="color"
                                 className="input"
                                 name="Colour"
                                 onChange={onChangeColour}
                                 /><br />
-                        <label htmlFor="Select Contact">Select Contact:</label>
-                            <Select onChange={onChangeContacts} options = {options2} />
-                        <label htmlFor="Select Contact">Select Reminder:</label>
-                            <Select isMulti options= {options3} onChange={onChangeReminder}/>
+                                </div>
 
-                        <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
+
+                            <div className="contacts">
+                                <Select isMulti onChange={onChangeContacts} options = {options2} placeholder="Enter Contacts..."/>
+                                <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
+                            </div>
+
+                            <div className="reminder">
+                                <Select isMulti options= {options3} onChange={onChangeReminder} placeholder="Enter Reminder..."/>
+                            </div>
 
                             <input
                                 type="submit"

@@ -279,6 +279,14 @@ a:hover {text-decoration: none; color: inherit}
   font-size: 0.75em !important;
 }
 
+p.title {
+  font-size: 1.75em;
+  padding: 20px 0px;
+  padding-top: 200px;
+  text-align: center;
+  text-transform: capitalize;
+}
+
 /* ----------------- input form css (contacts and events) ------------------- */
 input {
   border-radius: 5px;
@@ -286,6 +294,14 @@ input {
   width: 600px;
   height: 50px;
   font-size: 100%;
+}
+
+textarea {
+  border-radius: 5px;
+  border: 3px solid #000000;
+  width: 50vw;
+  font-size: 100%;
+  resize: none;
 }
 
 form {
@@ -324,39 +340,58 @@ input[name=occupation] {
   width: 25vw;
 }
 
+.reminder {
+  padding: 20px 00px;  
+  bottom: 20px;
+  left: 30vw;
+  width: 50vw;
+}
+
+.import {
+  padding: 20px 0px;  
+  bottom: 20px;
+  left: 30vw;
+  width: 50vw;
+}
+
 input[name=image] {
   width: 35vw;
   
 }
 
 input[name=title] {
-  position: relative;
-  top: 20px;
-  width: 35vw;
+  align-self: center;
+  top: 25px;
+  width: 50vw;
 }
 
 input[name=Description] {
-  width: 55vw;
+  width: 50vw;
   position: relative;
-  top: 50px;
+  top: 110px;
 }
 
 input[name=Start] {
-  width: 25vw;
+  width: 24vw;
   position: relative;
-  top: 80px;
+  top: 20px;
 }
 
 input[name=End] {
-  width: 25vw;
+  width: 24vw;
   position: relative;
-  top: 30px;
-  left: 30vw;
+  top: -30px;
+  left: 25vw;
+}
+
+.colourSelect{
+  padding-bottom: 20px;
+  align-content: center;
 }
 
 input[name=Colour] {
   position: relative;
-  top: 200px;
+  top: 00px;
   width: 55vw;
 }
 

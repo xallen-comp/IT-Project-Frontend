@@ -11,6 +11,10 @@ const EventDetails = (props) => {
 	const [event, setEvent] = useState("");
     const url = `/events/${props.match.params.eventID}`;
     const history = useHistory();
+    const [reminder, setReminder] = useState([]);
+    const [contacts, setContacts] = useState([]);
+    const [image, setImage] = useState("");
+
 
     const handleUpdate = (e) => {
         console.log(e)
@@ -19,7 +23,9 @@ const EventDetails = (props) => {
         axios.post(`/events/${e}/delete`, data);
         history.push("/");
     }
+    
 
+   
     //adapted from css tricks
     const formatDate = (dateString) => {
         const v = moment(dateString);
@@ -27,7 +33,23 @@ const EventDetails = (props) => {
     }
 	useEffect(() => {
 		setEvent(props.match.params.eventID);
-		axios.get(url).then(res => {setEvent(res.data)})
+		axios.get(url).then(res => {
+            axios.get("/contacts").then(res2 => {
+                const contact = []
+                for(let index in res2.data){
+                    
+                    if(res.data.contacts.includes(res2.data[index]._id)){
+                        contact.push(res2.data[index]);
+                    }
+                }
+                setContacts(contact)
+
+            })
+            setEvent(res.data)
+            setReminder(res.data.reminder)
+        })
+
+
     }, [props.match.params.eventID, url])
 	return (
         <>
@@ -47,9 +69,21 @@ const EventDetails = (props) => {
                 <div className = "splash-of-colour" style={{height: "20px", width: "100%", background: `${event.colour}`}}></div> 
 
                     <p> {formatDate(event.start_time) + " to " + formatDate(event.end_time)} </p>
-                    <p>Importance: {event.importance}</p>
-                    <p>Reminder set for: {event.reminder}</p>
                     <p>{event.description}</p>
+                    <p>Importance: {event.importance}</p>
+                    <p>Contacts:</p>
+                    {console.log("contacts " + contacts)}
+                    {contacts.map((note, key) => (
+                        <div>
+						<p1>{note.first_name} {note.last_name}</p1>
+                        </div>
+                ))}
+                    <p>Reminder set for:</p>
+                    {reminder.map((note, key) => (
+                        <div>
+						<p1>{note} minutes </p1>
+                        </div>
+                ))}
                     <Link to={`/updateEvent/${event._id}`} className='btn'>Update Event</Link>
                     <button onClick={()=>handleUpdate(event._id)} className='btn'>Delete Event</button>
             </div>
