@@ -49,6 +49,20 @@ img{
   text-align: center;
 }
 
+a.btn.contact{
+  font-size: calc(5px + 2vmin);
+  color:lavender
+}
+
+a.btn.event{
+  font-size: calc(5px + 2vmin);
+  color:lavender
+}
+
+button.fc-today-button.fc-button.fc-button-primary{
+  text-indent: -5px;
+}
+
 .bg1 {
   width: calc(10vw + 10vmin);
   height: 20%;
@@ -96,6 +110,17 @@ nav{
   text-decoration: none;
   color: whitesmoke;
   padding: 5px 0;
+}
+
+.fc-toolbar-title{
+  width: 10%px;
+  font-size: calc(10vw + 10vmin)
+}
+
+button{
+  width: calc(5vw + 5vmin);
+  font-size: 5px
+
 }
 
 
@@ -187,8 +212,25 @@ input[name=Add-Comment]{
 }
 
 .reminder-button p{
-  font-size: 35px;
+  font-size: calc(8px + 3vmin);
   text-decoration: none
+}
+.fc-toolbar-chunk{
+width: 900px;
+}
+.fc-today-button{
+  position: relative;
+  font-size: calc(8px + 3vmin);
+}
+
+
+
+@media (max-width: 1459px) {
+  
+  .fc-today-button{
+    position: relative;
+    left: 25%;
+  }
 }
 
 
@@ -263,12 +305,13 @@ a:hover {text-decoration: none; color: inherit}
 
 .contact {
   border-radius: 50%;
-  height: 120px;
-  width: 120px;
+  height: calc(30px + 10vmin);
+  width: calc(30px + 10vmin);
   padding: 27px 27px;
   position: relative;
   left: 10px;
 }
+
 
 .remindbutton {
   height: 25px;
