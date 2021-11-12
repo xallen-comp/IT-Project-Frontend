@@ -126,8 +126,6 @@ const EventDetails = (props) => {
                 <h1 className = "logo"><a href="/">Event Tracker</a></h1>
                 <ul class="nav-links">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/">Contacts</a></li>
-                    <li><a href="/">Events</a></li>
                 </ul>
             </nav>
         </div>

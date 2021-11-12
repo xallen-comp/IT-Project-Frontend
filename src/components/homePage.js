@@ -76,8 +76,7 @@ const HomePage = () => {
                     <h1 className = "logo"><a href="/">Event Tracker</a></h1>
                     <ul class="nav-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/">Contacts</a></li>
-                        <li><a href="/">Events</a></li>
+  
                     </ul>
                 </nav>
             </div>
@@ -101,7 +100,17 @@ const HomePage = () => {
                     
                 <div>
 
-                    <h1>Reminders: {reminders.map((reminder, key) => (<div><p> {reminder.title}</p> <button className = "remindbutton" onClick={() => DeleteReminder(reminder)}>Received Reminder</button></div>))}</h1>
+                    <h1>Reminders: {
+                    reminders.map((reminder, key) => (
+                        <div className="reminder-button">
+                            <p> {reminder.title}</p> 
+                            <Button size="large" variant="outlined" color="error" className = "remindbutton" onClick={() => DeleteReminder(reminder) }>
+                                Received
+					        </Button>
+                            </div>
+                            ))}
+                            </h1>
+                            
 
                     <h1> Events </h1>
                     <FullCalendar

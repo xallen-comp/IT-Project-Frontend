@@ -148,7 +148,7 @@ margin-right: auto;
 }
 
 .comments{
-  padding-top: 8%;
+  padding: 8% 0px;
   width: 70%;
   height: auto;
 }
@@ -172,6 +172,24 @@ margin-right: auto;
   padding-right: 5%;
 }
 
+input[name=comment-add]{
+  position: relative;
+  top:170px
+}
+
+input[name=Add-Comment]{
+  position: relative;
+  top:185px
+}
+
+.add-comments{
+  padding: 10px 10px;
+}
+
+.reminder-button p{
+  font-size: 35px;
+  text-decoration: none
+}
 
 
 
@@ -304,6 +322,7 @@ input {
   height: 50px;
   font-size: 100%;
 }
+
 
 textarea {
   border-radius: 5px;
