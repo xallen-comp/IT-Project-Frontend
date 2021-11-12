@@ -78,7 +78,7 @@ const EventDetails = (props) => {
     ))
     */
     const options2 = items.map((item, key) => (
-        { value: key, label: item.first_name+" "+item.last_name }
+        { value: key, label: item.first_name+" "+item.la }
         
     ))
     //console.log(options)  
