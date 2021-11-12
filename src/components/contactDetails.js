@@ -48,7 +48,7 @@ const ContactDetails = (props) => {
         const data = {};
         //e.preventDefault();
         axios.post(`/contacts/${e}/delete`, data);
-        history.push("/");
+        window. location. reload()
     }
 
     const handleUpdate = (e) => {
@@ -56,7 +56,7 @@ const ContactDetails = (props) => {
         e.preventDefault();
         axios.post("/comments/add", 
                 {contact_id: props.match.params.contactID, comment_body: note}).then(res => console.log(res));
-        history.push("/");
+		window. location. reload()
     }
 
 	return (
@@ -65,8 +65,6 @@ const ContactDetails = (props) => {
                     <h1 className = "logo"><a href="/">Event Tracker</a></h1>
                     <ul class="nav-links">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/">Contacts</a></li>
-                        <li><a href="/">Events</a></li>
                     </ul>
                 </nav>
             </div>
@@ -98,25 +96,27 @@ const ContactDetails = (props) => {
 					</div>
                 ))}
             </div>
+			<div className = "add-comments">
 			<form className = 'form' onSubmit = {handleUpdate}>
 			<label htmlFor="Comments"></label>
 				<input
 					type="text"
 					className="input"
 					placeholder="Add comment:"
-					name="title"
+					name="comment-add"
 					onChange={onChangeNote}
 					autoComplete="on"
 					required/><br />
 				<input
                         type="submit"
                         className="btn comment"
-                        name="Add Comment"
+                        name="Add-Comment"
                         value="Add Comment"
                         autoComplete="on"
                     /> 
 
-			</form>			
+			</form>		
+			</div>	
 			{//<Button size="large" variant="contained" href = {`/updateContact/${item._id}`} className='btn'> Update Contact</Button>
 			}<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
 			<button onClick={()=>handleUpdateDel(item._id)} className='btn'>Delete Contact</button>
