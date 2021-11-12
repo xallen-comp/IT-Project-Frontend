@@ -7,6 +7,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import Button from '@mui/material/Button';
 
 import moment from 'moment';
 import '../App.css';
@@ -17,6 +18,7 @@ const HomePage = () => {
     const [newItems, setNewItems] = useState([]);
     const [events, setEvents] = useState([]);
     const [calendarEvents, setCalendarEvents] = useState([]);
+    const [reminders, setReminders] = useState([]);
     const [image, setImage] = useState("");
     const GetContacts = () =>{
             axios.get("/contacts").then(res => {
@@ -43,7 +45,25 @@ const HomePage = () => {
         setCalendarEvents(cEvents);
         });
     }
+	const GetReminders = () =>{
+        const date = Date.now();
+        axios.post(`/events/getreminders`, {"now": date}).then(res => {
+            console.log(res.data);
+            let eventsR = []
+            for(let index in res.data){
+                let obj = {title: res.data[index].title, reminder: res.data[index].reminder, _id: res.data[index]._id}
+                eventsR.push(obj)
+            }
+            setReminders(eventsR);
+            console.log(typeof(res.data));   
+        });
+    }
+
+    const DeleteReminder = (val) =>{
+         axios.post(`/events/${val._id}/deleteReminder`, {"reminder": val.reminder}).then(res => {console.log(res)});
+    }
     useEffect(() => {
+        GetReminders();
         GetContacts();
         GetEvents();
 
@@ -79,7 +99,10 @@ const HomePage = () => {
                     </div> 
 
                     
-                <div>             
+                <div>
+
+                    <h1>Reminders: {reminders.map((reminder, key) => (<div><p> {reminder.title}</p> <button className = "remindbutton" onClick={() => DeleteReminder(reminder)}>Received Reminder</button></div>))}</h1>
+
                     <h1> Events </h1>
                     <FullCalendar
                         timeZone= 'UTC'

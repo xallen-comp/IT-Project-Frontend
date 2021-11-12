@@ -20,6 +20,10 @@ const EventDetails = (props) => {
     const [start, setStart] = useState("");
     const [end, setEnd] = useState("");
     const [colour, setColour] = useState("");
+    const [importance, setImportance] = useState(null);
+    const [reminder, setReminder] = useState(null);
+    const [oldReminder, setOldReminder] = useState(null);
+    const [contacts, setContacts] = useState([]);
     const history = useHistory();
 
     const onChangeTitle = (e) => {
@@ -46,19 +50,35 @@ const EventDetails = (props) => {
         const colour = e.target.value;
         setColour(colour);
     }
+    const onChangeImportance = (e) => {
+        const importance = e.value;
+        setImportance(importance);
+    }
+
+    const onChangeReminder = (e) => {
+        const reminders = []
+        for(let index in e){
+            reminders.push(e[index].value);
+        }
+        setReminder(reminders);
+    }
 
     const handleUpdate = (e) => {
         console.log(e)
         e.preventDefault();
         axios.post(`/events/${event._id}/update`, 
-                {description: description, title: title, start_time:start, end_time:end, colour: colour}).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour: colour, importance: importance, reminder: reminder, contacts: contacts}).then(res => console.log(res));
         history.push("/");
     }
+
 
     const url = `/events/${props.match.params.eventID}`;
 	useEffect(() => {
 		setEvent(props.match.params.eventID);
-		axios.get(url).then(res => {setEvent(res.data)})
+		axios.get(url).then(res => {
+            setEvent(res.data)
+            setOldReminder(res.data.reminder)
+        })
     }, [props.match.params.eventID, url])
 
     //modified to add addContact button
@@ -70,17 +90,31 @@ const EventDetails = (props) => {
     useEffect(() => {
             GetContacts();
         }, [])
-    //console.log(items) 
-    
-    /*
-    const options = items.map((item, key) => (
-        <option>{item.first_name} {item.last_name}</option>
-    ))
-    */
-    const options2 = items.map((item, key) => (
-        { value: key, label: item.first_name+" "+item.last_name }
-        
-    ))
+   
+
+        const options2 = items.map((item, key) => (
+            { value: key, label: item.first_name+" "+item.last_name }
+            
+        ))
+
+    const options = [
+        { value: 'Very High', label: 'Very High' },
+        { value: 'High', label: 'High' },
+        { value: 'Medium', label: 'Medium' },
+        { value: 'Low', label: 'Low' },
+        { value: 'Very Low', label: 'Very Low' }
+      ]
+
+
+    const options3 = [
+        { value: 15, label: '15 Minutes'},
+        { value: 30, label: '30 Minutes'},
+        { value: 60, label: '1 Hour'},
+        { value: 10*60, label: '10 Hours'},
+        { value: 24*60, label: '1 Day'},
+        { value: 7*24*60, label: '1 Week'},
+        { value: 0, label: 'None'}
+    ]
     //console.log(options)  
 
     //----------------------------------
@@ -100,7 +134,7 @@ const EventDetails = (props) => {
         <body className = "App-header">
             <div>
                 <form className = 'form' onSubmit = {handleUpdate}>
-                    <p>Enter the event's details below</p>
+                    <p className = "title" >Update Event</p>
 
                         <input
                             type="text"
@@ -111,15 +145,12 @@ const EventDetails = (props) => {
                             autoComplete="on"
                             required/><br />
 
-                        <input
-                            type="text"
-                            className="input"
-                            defaultValue={event.description}
-                            name="Description"
-                            onChange={onChangeDescription}
-                            autoComplete="on"
-                            required/><br />
+                        <div className="import">
 
+                            <Select onChange={onChangeImportance} placeholder="Enter Importance" options={options} placeholder={event.importance}/>
+                        </div>
+
+                        <textarea rows="3" cols="80" onChange={onChangeDescription} placeholder="Enter Description"/>
                    
                         <input
                             type="datetime-local"
@@ -147,10 +178,13 @@ const EventDetails = (props) => {
                             defaultValue={event.colour}
                             /><br />
 
-                    <label htmlFor="Select Contact">Select Contact:</label>
-                        <Select isMulti options  = {options2} />
-                        <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
-
+                        <div className="contacts">
+                            <Select isMulti options  = {options2} placeholder="Enter Contacts..."/>
+                            <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
+                        </div>
+                        <div className="reminder">
+                            <Select isMulti options= {options3} onChange={onChangeReminder} placeholder={oldReminder}/>
+                        </div>
 
                         <input
                             type="submit"

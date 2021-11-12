@@ -16,12 +16,12 @@ Cypress.on('uncaught:exception', (err, runnable) => {
 describe("Test 6 Check if buttons are visible and clickable", function() {
     it('TS 6.1 Check for correct input prompts for add event botton (title,description,start etc)', function() {
         cy.visit('http://localhost:3000/addEvent')
-        cy.contains("Enter the event's details below").should('be.visible')
+        cy.contains("New Event").should('be.visible')
 
         //cy.contains('Enter Title').should('be.visible')
         cy.get('input[name = "title"]').invoke('attr', 'placeholder').should('contain', 'Enter Title')
         //cy.contains('Enter Description').should('be.visible')
-        cy.get('input[name = "Description"]').invoke('attr', 'placeholder').should('contain', 'Enter Description')
+        cy.get('textarea').invoke('attr', 'placeholder').should('contain', 'Enter Description')
 
         //cy.contains('Start:').should('be.visible')
         cy.get('input[name = "Start"]').invoke('attr', 'type').should('eq', 'datetime-local')
