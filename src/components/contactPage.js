@@ -93,7 +93,7 @@ const ContactPage = () => {
         <body className = "App-header">
             <div>
                 <form className='form' onSubmit={handleUpdate}>
-                    <p>Enter the contact's details below</p>
+                <p className = "title" >New Contact</p>
                     
                         <input 
                             type="text" 
@@ -142,6 +142,7 @@ const ContactPage = () => {
                         <input
                             type="file"
                             className="input"
+                            name="image"
                             onChange={onChangeFile} /><br />
                       <label htmlFor="photo">Select cover photo: </label>
                         <input

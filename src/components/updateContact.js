@@ -112,8 +112,8 @@ const UpdateContact = (props) => {
             <body className = "App-header">
             <div>
             <form className='form' onSubmit={handleUpdate}>
-                <p>Enter the contact's details below</p>
-                
+            <p className = "title" >Update Contact</p>
+                <div className = "contact-form">
                     <input 
                         type="text" 
                         className="input"
@@ -165,14 +165,17 @@ const UpdateContact = (props) => {
                         autoComplete="on"
                         defaultValue={item.occupation}
                         /><br/> 
+                </div>  
                       <label htmlFor="file">Select file: </label>
                         <input
                             type="file"
+                            name="image"
                             className="input"
                             onChange={onChangeFile} /><br />
                       <label htmlFor="photo">Select cover photo: </label>
                         <input
                             type="file"
+                            name="image"
                             className="input"
                             onChange={onChangePhoto}/> <br />
                     <input

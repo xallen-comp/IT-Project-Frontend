@@ -51,12 +51,12 @@ img{
 
 a.btn.contact{
   font-size: calc(5px + 2vmin);
-  color:lavender
+  color:#F0F8FF
 }
 
 a.btn.event{
   font-size: calc(5px + 2vmin);
-  color:lavender
+  color:#F0F8FF
 }
 
 button.fc-today-button.fc-button.fc-button-primary{
@@ -93,7 +93,7 @@ nav{
   background: #0f1936;
 }
 .logo{
-  color: whitesmoke;
+  color: #F0F8FF;
   padding: 5px 10px;
   width: 350px;
   font-size: 40px;
@@ -108,7 +108,7 @@ nav{
 }
 .nav-links li a{
   text-decoration: none;
-  color: whitesmoke;
+  color: #F0F8FF;
   padding: 5px 0;
 }
 
@@ -204,7 +204,6 @@ input[name=comment-add]{
   margin : 0 auto;
   width: 90%;
   top:170px
-  
 }
 
 input[name=Add-Comment]{
@@ -432,9 +431,15 @@ input[name=occupation] {
   width: 50vw;
 }
 
+.contact-form{
+  padding: 10px 10px;
+}
+
 input[name=image] {
-  width: 35vw;
-  
+  width: 50vw;
+  display: block;
+  max-width: 4000px;
+  margin : 0 auto;
 }
 
 input[name=title] {
