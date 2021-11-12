@@ -47,7 +47,7 @@ const HomePage = () => {
     }
 	const GetReminders = () =>{
         const date = Date.now();
-        axios.post(`/events/getreminders`, {"now": date}).then(res => {
+        axios.post(`/events/getreminders`, {date: date}).then(res => {
             console.log(res.data);
             let eventsR = []
             for(let index in res.data){
