@@ -107,7 +107,7 @@ const EventPage = () => {
         console.log("this is" +importance)
         e.preventDefault();
         axios.post("/events/add", 
-                {description: description, title: title, start_time:start, end_time:end, colour:colour, contacts: contacts, importance:importance, reminder:reminder} ).then(res => console.log(res));
+                {description: description, title: title, start_time:start, end_time:end, colour:colour, contacts: contacts, time:start, importance:importance, reminder:reminder} ).then(res => console.log(res));
         history.push("/");
     }
 
