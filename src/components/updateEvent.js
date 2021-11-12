@@ -37,12 +37,12 @@ const EventDetails = (props) => {
     };
 
     const onChangeStart = (e) => {
-        const start = e._d;
+        const start = e.target.value;
         setStart(start);
     }
 
     const onChangeEnd = (e) => {
-        const end = e._d;
+        const end = e.target.value;
         setEnd(end);
     }
 
