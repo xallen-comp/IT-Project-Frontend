@@ -134,13 +134,12 @@ const ContactDetails = (props) => {
                         name="Add-Comment"
                         value="Add Comment"
                         autoComplete="on"
-                    /> 
+					 />
 
 			</form>		
 			</div>	
 			{//<Button size="large" variant="contained" href = {`/updateContact/${item._id}`} className='btn'> Update Contact</Button>
 			}<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
-			</form>			
 			{item.contact_type && (<Button size="large" variant="contained" href = {file} className='btn'> DownLoad File</Button>)}
 			<Link to={`/updateContact/${item._id}`} className='btn'>Update Contact</Link>
 			<button onClick={()=>handleUpdateDel(item._id)} className='btn'>Delete Contact</button>
