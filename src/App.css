@@ -435,6 +435,10 @@ input[name=occupation] {
   padding: 10px 10px;
 }
 
+.css-1s2u09g-control{
+  width: 50vw;
+}
+
 input[name=image] {
   width: 50vw;
   display: block;
@@ -467,6 +471,14 @@ input[name=End] {
   left: 25vw;
 }
 
+input[name=Add-Event] {
+  width: 50vw;
+}
+
+form[name=newEvent]{
+  width: 50vw;
+}
+
 .colourSelect{
   padding-bottom: 20px;
   align-content: center;
@@ -475,7 +487,7 @@ input[name=End] {
 input[name=Colour] {
   position: relative;
   top: 00px;
-  width: 55vw;
+  width: 50vw;
 }
 
 @keyframes App-logo-spin {

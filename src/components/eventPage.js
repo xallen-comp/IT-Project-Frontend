@@ -122,7 +122,7 @@ const EventPage = () => {
             </div>
             <body className = "App-header">
                 <div>
-                    <form className = 'form' onSubmit = {handleUpdate}>
+                    <form className = 'form' onSubmit = {handleUpdate} name = "newEvent">
                         <p className = "title" >New Event</p>
 
                             <input
@@ -165,7 +165,7 @@ const EventPage = () => {
                                 </div>
 
 
-                            <div className="contacts">
+                            <div className="adding-contacts">
                                 <Select isMulti onChange={onChangeContacts} options = {options2} placeholder="Enter Contacts..."/>
                                 <Button size="small" variant="outlined" href = {`/addContact`} className='btn'> Add New Contact</Button>
                             </div>
@@ -177,7 +177,7 @@ const EventPage = () => {
                             <input
                                 type="submit"
                                 className="btn"
-                                name="Add Event"
+                                name="Add-Event"
                                 value="Add Event"
                                 autoComplete="on"
                             />                           

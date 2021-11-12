@@ -131,7 +131,7 @@ const EventDetails = (props) => {
         </div>
         <body className = "App-header">
             <div>
-                <form className = 'form' onSubmit = {handleUpdate}>
+                <form className = 'form' onSubmit = {handleUpdate} name="newEvent">
                     <p className = "title" >Update Event</p>
 
                         <input
@@ -187,7 +187,7 @@ const EventDetails = (props) => {
                         <input
                             type="submit"
                             className="btn eventform"
-                            name="Update Event"
+                            name="Add-Event"
                             value="Update Event"
                             autoComplete="on"
                         /> 
