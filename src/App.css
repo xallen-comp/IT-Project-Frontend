@@ -38,13 +38,12 @@ img{
 
 .horizon {
   width: 100vw;
-  height: 20vh;
-  
-  padding-top: 30px;
+  height: calc(30px + 18vh);
+  padding-top: 0.5vh;
 }
 
 .bg {
-  width: 10vw;
+  width: calc(2vh + 20vmin);
   height: 20vh;
   text-align: center;
 }
@@ -64,7 +63,7 @@ button.fc-today-button.fc-button.fc-button-primary{
 }
 
 .bg1 {
-  width: calc(10vw + 10vmin);
+  width: calc(10vh + 15vmin);
   height: 20%;
   font-size: calc(10px + 2vmin);
   text-align: center;
