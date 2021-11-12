@@ -86,7 +86,7 @@ const UpdateContact = (props) => {
              if(filePrev != fileName && fileName != ""){
                 axios.post('/contacts/delete', {"filename": filePrev}).then(res => console.log(res));
              }
-             history.push("/");
+             history.push(`/contactDetails/${item._id}`);
          }
     }
     //from webinfo 2021

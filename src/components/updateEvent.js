@@ -68,7 +68,7 @@ const EventDetails = (props) => {
         e.preventDefault();
         axios.post(`/events/${event._id}/update`, 
                 {description: description, title: title, start_time:start, end_time:end, colour: colour, importance: importance, reminder: reminder, contacts: contacts}).then(res => console.log(res));
-        history.push("/");
+        history.push(`/eventDetails/${event._id}`);
     }
 
 

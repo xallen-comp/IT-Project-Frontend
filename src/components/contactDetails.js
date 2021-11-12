@@ -134,7 +134,7 @@ const ContactDetails = (props) => {
                         name="Add-Comment"
                         value="Add Comment"
                         autoComplete="on"
-                    /> 
+					 />
 
 			</form>		
 			</div>	
