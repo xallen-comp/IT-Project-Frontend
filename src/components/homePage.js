@@ -61,6 +61,7 @@ const HomePage = () => {
 
     const DeleteReminder = (val) =>{
          axios.post(`/events/${val._id}/deleteReminder`, {"reminder": val.reminder}).then(res => {console.log(res)});
+         window. location. reload()
     }
     useEffect(() => {
         GetReminders();
