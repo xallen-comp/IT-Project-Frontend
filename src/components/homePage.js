@@ -105,7 +105,7 @@ const HomePage = () => {
 
                     <h1> Events </h1>
                     <FullCalendar
-                        timeZone= 'UTC'
+                        timeZone= 'local'
                         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
                         initialView="dayGridMonth"
                         headerToolbar={{
