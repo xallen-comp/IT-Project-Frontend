@@ -148,7 +148,8 @@ margin-right: auto;
 }
 
 .comments{
-  padding: 8% 0px;
+  padding: 5% 0px;
+  padding-bottom: 10%;
   width: 70%;
   height: auto;
 }
@@ -174,12 +175,18 @@ margin-right: auto;
 
 input[name=comment-add]{
   position: relative;
+  display: block;
+  margin : 0 auto;
+  width: 90%;
   top:170px
+  
 }
 
 input[name=Add-Comment]{
-  position: relative;
-  top:185px
+  display: block;
+  top:185px;
+  width: 50%;
+  margin : 0 auto;
 }
 
 .add-comments{
