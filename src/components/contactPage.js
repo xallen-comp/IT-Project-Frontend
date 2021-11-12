@@ -44,7 +44,7 @@ const ContactPage = () => {
         console.log(lastName);
         e.preventDefault();
          if (true){
-             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone, photo:"https://www.kindpng.com/picc/m/24-248253_user-profile-default-image-png-clipart-png-download.png"}).then(res => console.log(res));
+             axios.post("/contacts/add", {first_name: firstName, last_name: lastName, email: email, occupation: occupation, comments: comment, phone: phone}).then(res => console.log(res));
              history.push("/");
          }
     }
